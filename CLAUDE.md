@@ -21,7 +21,7 @@ No hay paso de compilación ni pruebas — el proyecto corre directamente como m
 
 Tres archivos fuente con separación clara de responsabilidades:
 
-- **`src/server.js`** — Punto de entrada del servidor MCP. Al arrancar llama a `GET /api/v3/portals` para resolver el nombre del portal (`ZOHO_PORTAL_NAME`) a su ID numérico requerido por V3, y lo almacena en la variable `PORTAL`. Registra las 11 herramientas con esquemas de parámetros Zod y delega cada una a `zohoClient`.
+- **`src/server.js`** — Punto de entrada del servidor MCP. Al arrancar llama a `GET /api/v3/portals` para resolver el nombre del portal (`ZOHO_PORTAL_NAME`) a su ID numérico requerido por V3, y lo almacena en la variable `PORTAL`. Registra las 14 herramientas con esquemas de parámetros Zod y delega cada una a `zohoClient`.
 - **`src/zoho-client.js`** — Cliente HTTP singleton para la API REST de Zoho Projects (`https://projectsapi.zoho.com/api/v3`). Carga los tokens desde `tokens.json`, refresca automáticamente en respuesta 401 y reintenta la solicitud original una vez. Los cuerpos de solicitud usan `application/json`.
 - **`src/setup-auth.js`** — Configuración OAuth2 de una sola vez: abre la URL de autorización, recibe el código via servidor HTTP local en el puerto 8080, lo intercambia por tokens y escribe `tokens.json`.
 
@@ -66,7 +66,19 @@ El refresco de tokens es transparente: `zoho-client.js` reintenta cualquier 401 
 
 ## Herramientas MCP Expuestas
 
-`list_projects`, `list_tasks`, `get_task`, `create_task`, `update_task`, `list_comments`, `add_comment`, `list_users`, `start_timer`, `stop_timer`, `list_task_fields`. Todas las herramientas reciben `project_id` como parámetro requerido, excepto `list_projects`.
+`list_projects`, `list_tasks`, `get_task`, `create_task`, `update_task`, `list_comments`, `add_comment`, `list_users`, `start_timer`, `stop_timer`, `list_task_fields`, `list_bugs`, `get_bug`, `update_bug`. Todas las herramientas reciben `project_id` como parámetro requerido, excepto `list_projects`.
+
+### Issues/Bugs (`list_bugs`, `get_bug`, `update_bug`)
+
+El módulo de incidencias de Zoho es independiente de las tareas. Estas herramientas operan sobre `/portal/{id}/projects/{id}/bugs`:
+
+- `bug_id` acepta la **clave visible** (ej: `"SO1-I90"`) o el **ID interno numérico**. El helper `resolveBugId` convierte la clave a ID interno buscándola con `list_bugs` (campo `key`/`bug_number`).
+- **Lectura (V3):** `list_bugs` y `get_bug` usan `GET /api/v3/.../bugs`, pero requieren el query param **`is_desc_needed=true`** (sin él, Zoho responde 400 `LESS_THAN_MIN_OCCURANCE`). La respuesta llega como `{ bugs: [...] }`.
+- **Escritura (V2):** el módulo de bugs **NO acepta PATCH/POST/PUT en V3** (devuelve `INVALID_METHOD`). `update_bug` actualiza vía `POST /restapi/portal/{slug}/projects/{id}/bugs/{id}/` **form-urlencoded** (`zohoClient.postFormV2`), igual que las subtareas. Requiere el **nombre** del portal (`PORTAL_SLUG`), no el ID numérico — por eso `initPortalId` ahora guarda también el slug.
+- Campos de `update_bug`: `title`, `description` (convertida a HTML con `toHtmlDescription`), `status` (string).
+- El scope OAuth `ZohoProjects.bugs.ALL` (en `setup-auth.js`) ya cubre estos endpoints.
+
+> ⚠️ **Nota de configuración:** en el `.env` actual `ZOHO_PORTAL_NAME=NAY-ING-STE` (un nombre de proyecto, no de portal). El portal correcto es **`sigobproyectos`** (ID `920809`). Con el valor actual, `initPortalId` no resuelve y las llamadas fallan; debe corregirse a `ZOHO_PORTAL_NAME=sigobproyectos`.
 
 ### Creación rápida de tareas (`create_task`)
 

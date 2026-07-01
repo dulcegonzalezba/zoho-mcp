@@ -82,6 +82,26 @@ class ZohoClient {
   post(path, body)  { return this._request("POST",   path, body); }
   patch(path, body) { return this._request("PATCH",  path, body); }
   delete(path)      { return this._request("DELETE", path); }
+
+  // Algunos módulos (bugs, subtareas) solo aceptan la API V2 form-urlencoded.
+  // portalName es el nombre del portal (ej: "sigobproyectos"), no el ID numérico.
+  async postFormV2(portalName, subPath, fields) {
+    const url = `https://projectsapi.zoho.com/restapi/portal/${portalName}/${subPath}`;
+    const doReq = () => fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Zoho-oauthtoken ${this.accessToken}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(fields).toString(),
+    });
+    let res = await doReq();
+    if (res.status === 401) {
+      await this._refresh();
+      res = await doReq();
+    }
+    return res.json();
+  }
 }
 
 export const zohoClient = new ZohoClient();

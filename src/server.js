@@ -15,17 +15,24 @@ const text = (str) => ({ content: [{ type: "text", text: String(str) }] });
 const toZpuid = (id) => (id != null ? String(id).trim() : "") || undefined;
 
 let PORTAL = PORTAL_NAME;
+// Nombre real del portal (requerido por la API V2 de bugs). Se llena en initPortalId.
+let PORTAL_SLUG = PORTAL_NAME;
 
 async function initPortalId() {
-  if (/^\d+$/.test(PORTAL_NAME)) return;
   const portals = await zohoClient.get("/portals");
   const list = Array.isArray(portals) ? portals : (portals.portals || []);
+  if (/^\d+$/.test(PORTAL_NAME)) {
+    const byId = list.find(p => String(p.id) === PORTAL_NAME);
+    if (byId?.portal_name) PORTAL_SLUG = byId.portal_name;
+    return;
+  }
   const match = list.find(p =>
     p.portal_name === PORTAL_NAME ||
     p.org_name === PORTAL_NAME ||
     p.name === PORTAL_NAME
   );
   if (match?.id) PORTAL = String(match.id);
+  if (match?.portal_name) PORTAL_SLUG = match.portal_name;
 }
 
 async function resolveProjectId(nameOrId) {
@@ -38,6 +45,20 @@ async function resolveProjectId(nameOrId) {
   );
   if (!match) throw new Error(`No se encontró proyecto con nombre: "${nameOrId}"`);
   return match.id;
+}
+
+async function resolveBugId(projectId, bugKeyOrId) {
+  // Numérico → ya es el ID interno del bug
+  if (/^\d+$/.test(bugKeyOrId)) return bugKeyOrId;
+  // Clave visible (ej: "SO1-I90") → buscarla en la lista de bugs del proyecto
+  const r = await zohoClient.get(`/portal/${PORTAL}/projects/${projectId}/bugs`, { is_desc_needed: "true" });
+  const bugs = Array.isArray(r) ? r : (r.bugs || []);
+  const target = bugKeyOrId.trim().toLowerCase();
+  const match = bugs.find(b =>
+    String(b.key || b.bug_number || "").toLowerCase() === target
+  );
+  if (!match) throw new Error(`No se encontró bug con clave "${bugKeyOrId}" en el proyecto ${projectId}.`);
+  return String(match.id || match.id_string);
 }
 
 function toISODate(mmddyyyy) {
@@ -342,6 +363,82 @@ server.tool(
     return text(fields.map(f =>
       `api_name: ${f.api_name || "N/A"} | label: ${f.display_name || "N/A"} | tipo: ${f.field_type || "N/A"} | oculto: ${f.is_hidden ?? "N/A"}`
     ).join("\n"));
+  }
+);
+
+// ── list_bugs ─────────────────────────────────────────────────────────────────
+server.tool(
+  "list_bugs",
+  "Lista los issues/bugs de un proyecto (con su clave visible como SO1-I90 y su ID interno)",
+  {
+    project_id: z.string().describe("ID o nombre del proyecto"),
+    status:     z.string().optional().describe('Filtro opcional por estado (ej: "open", "closed")'),
+  },
+  async ({ project_id, status }) => {
+    const resolvedId = await resolveProjectId(project_id);
+    const params = { is_desc_needed: "true" };
+    if (status) params.filter = JSON.stringify({ criteria: [{ field_name: "status", criteria_condition: "is", value: status }], pattern: "1" });
+    const r = await zohoClient.get(`/portal/${PORTAL}/projects/${resolvedId}/bugs`, params);
+    const bugs = Array.isArray(r) ? r : (r.bugs || []);
+    if (!bugs.length) return text(`No se encontraron issues/bugs. Respuesta cruda: ${JSON.stringify(r).slice(0, 400)}`);
+    return text(bugs.map(b =>
+      `Clave: ${b.key || b.bug_number || "N/A"} | ID: ${b.id || b.id_string} | ${b.title || b.name || "Sin título"} | Estado: ${b.status?.name || b.status || "N/A"}`
+    ).join("\n"));
+  }
+);
+
+// ── get_bug ───────────────────────────────────────────────────────────────────
+server.tool(
+  "get_bug",
+  "Obtiene el detalle de un issue/bug. Acepta la clave visible (SO1-I90) o el ID interno.",
+  {
+    project_id: z.string().describe("ID o nombre del proyecto"),
+    bug_id:     z.string().describe("Clave visible (ej: 'SO1-I90') o ID interno del bug"),
+  },
+  async ({ project_id, bug_id }) => {
+    const resolvedId = await resolveProjectId(project_id);
+    const internalId = await resolveBugId(resolvedId, bug_id);
+    const b = await zohoClient.get(`/portal/${PORTAL}/projects/${resolvedId}/bugs/${internalId}`, { is_desc_needed: "true" });
+    const bug = Array.isArray(b?.bugs) ? b.bugs[0] : (b?.id || b?.title ? b : b);
+    if (!bug || (!bug.id && !bug.title)) return text(`Issue no encontrado. Respuesta cruda: ${JSON.stringify(b).slice(0, 400)}`);
+    return text([
+      `Título:      ${bug.title || bug.name || "N/A"}`,
+      `Clave:       ${bug.key || bug.bug_number || "N/A"}`,
+      `ID interno:  ${bug.id || bug.id_string}`,
+      `Estado:      ${bug.status?.name || bug.status || "N/A"}`,
+      `Descripción: ${bug.description || "Sin descripción"}`,
+    ].join("\n"));
+  }
+);
+
+// ── update_bug ────────────────────────────────────────────────────────────────
+server.tool(
+  "update_bug",
+  "Actualiza un issue/bug existente (descripción, título, estado). Acepta la clave visible (SO1-I90) o el ID interno.",
+  {
+    project_id:  z.string().describe("ID o nombre del proyecto"),
+    bug_id:      z.string().describe("Clave visible (ej: 'SO1-I90') o ID interno del bug"),
+    title:       z.string().optional().describe("Nuevo título"),
+    description: z.string().optional().describe("Nueva descripción (se convierte a HTML automáticamente)"),
+    status:      z.string().optional().describe("ID numérico del estado, o nombre (ej: 'Open', 'Closed')"),
+  },
+  async ({ project_id, bug_id, title, description, status }) => {
+    const resolvedId = await resolveProjectId(project_id);
+    const internalId = await resolveBugId(resolvedId, bug_id);
+
+    // El módulo de bugs NO acepta PATCH/POST/PUT en V3: se actualiza vía API V2
+    // form-urlencoded (POST a /restapi/.../bugs/{id}/). Requiere el nombre del portal.
+    const fields = {};
+    if (title)       fields.title = title;
+    if (description) fields.description = toHtmlDescription(description);
+    if (status)      fields.status = status;
+
+    if (!Object.keys(fields).length) return text("No se proporcionaron campos para actualizar.");
+
+    const r = await zohoClient.postFormV2(PORTAL_SLUG, `projects/${resolvedId}/bugs/${internalId}/`, fields);
+    const bug = Array.isArray(r?.bugs) ? r.bugs[0] : r;
+    if (bug?.title || bug?.id) return text(`Issue actualizado.\nClave: ${bug.key || bug_id} | ID: ${bug.id || internalId} | ${bug.title || ""}`);
+    return text(`Respuesta: ${JSON.stringify(r)}`);
   }
 );
 

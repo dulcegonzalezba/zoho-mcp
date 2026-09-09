@@ -158,13 +158,30 @@ const esDelEquipo = log => {
   });
 };
 
-// V3 no expone ruta de aprobación: se usa V2, SIN slash final
-// (con slash devuelve error 6891 "Given URL is wrong").
-function rutaAprobacion(portal, l) {
-  const base = `/restapi/portal/${portal}/projects/${l.project?.id}`;
-  if (l.type === "task") return `${base}/tasks/${l.module_detail?.id}/logs/${l.id}/approval`;
-  if (l.type === "issue" || l.type === "bug") return `${base}/bugs/${l.module_detail?.id}/logs/${l.id}/approval`;
-  return `${base}/logs/${l.id}/approval`;
+// Aprobación en lote: PATCH /portal/{id}/logs con un array.
+// OJO: `module` va como string con el tipo ("task" / "issue"). Enviarlo como
+// objeto {id, type} devuelve PATTERN_NOT_MATCHED.
+async function aprobarLote(portal, logs, estado = "Approved") {
+  const CHUNK = 100;
+  let ok = 0;
+  const errores = [];
+  for (let i = 0; i < logs.length; i += CHUNK) {
+    const lote = logs.slice(i, i + CHUNK);
+    const payload = lote.map(l => ({
+      id: l.id,
+      module: l.module_detail?.type || l.type,
+      approval_status: estado,
+    }));
+    try {
+      const r = await retry(() => zohoClient.patch(`/portal/${portal}/logs`, payload));
+      if (r?.error) errores.push(`lote ${i / CHUNK + 1}: ${JSON.stringify(r.error).slice(0, 200)}`);
+      else ok += lote.length;
+    } catch (e) {
+      errores.push(`lote ${i / CHUNK + 1}: ${String(e).slice(0, 120)}`);
+    }
+    await sleep(300);
+  }
+  return { ok, errores };
 }
 
 // ── Informe ──────────────────────────────────────────────────────────────────
@@ -463,16 +480,8 @@ if (!pendientes.length) {
   console.log(`\nPendientes (${h} h):`);
   for (const l of pendientes) console.log(`  ${l.date} ${l.log_hour} ${l.owner?.name} | ${l.project?.name} | ${l.type} | ${l.id}`);
 } else {
-  console.log(`Aprobando ${pendientes.length} registros…`);
-  let ok = 0; const errores = [];
-  for (const [i, l] of pendientes.entries()) {
-    try {
-      const r = await retry(() => zohoClient.postForm(rutaAprobacion(portal, l), { approval: "approve" }));
-      if (r?.error) errores.push(`${l.owner?.name} ${l.id}: ${JSON.stringify(r.error)}`); else ok++;
-    } catch (e) { errores.push(`${l.owner?.name} ${l.id}: ${String(e).slice(0, 120)}`); }
-    if ((i + 1) % 25 === 0) console.log(`  ${i + 1}/${pendientes.length}`);
-    await sleep(250);
-  }
+  console.log(`Aprobando ${pendientes.length} registros en lotes…`);
+  const { ok, errores } = await aprobarLote(portal, pendientes);
   console.log(`  aprobados=${ok} errores=${errores.length}`);
   errores.forEach(e => console.error("  ERROR", e));
   for (const l of pendientes) if (l.approval) l.approval.status = "Approved";

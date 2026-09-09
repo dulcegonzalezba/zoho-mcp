@@ -62,6 +62,7 @@ Fuera de `docs/`:
 ### Guías
 - `PLAYBOOK-documento-liberacion.md` — cómo se arma un documento de liberación desde URLs de Zoho
 - `GUIA-ALTA-TAREAS-ZOHO.md` — convenciones para dar de alta tareas y subtareas
+- `PLANTILLA-TAREAS-JALISCO.md` y `PLANTILLA-TAREAS-NAYARIT.md` — plantillas de referencia para crear tareas en esos proyectos
 
 ## Cómo se generan
 

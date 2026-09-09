@@ -52,19 +52,14 @@ class ZohoClient {
     this._save();
   }
 
-  async _request(method, path, body = null, form = false) {
+  async _request(method, path, body = null) {
     const options = {
       method,
       headers: { Authorization: `Zoho-oauthtoken ${this.accessToken}` },
     };
     if (body) {
-      if (form) {
-        options.headers["Content-Type"] = "application/x-www-form-urlencoded";
-        options.body = new URLSearchParams(body).toString();
-      } else {
-        options.headers["Content-Type"] = "application/json";
-        options.body = JSON.stringify(body);
-      }
+      options.headers["Content-Type"] = "application/json";
+      options.body = JSON.stringify(body);
     }
 
     // /api/ y /restapi/ (V2) cuelgan de la raíz; el resto se prefija con la base V3.
@@ -77,14 +72,11 @@ class ZohoClient {
       options.headers.Authorization = `Zoho-oauthtoken ${this.accessToken}`;
       res = await fetch(url, options);
     }
-    // V2 puede responder con cuerpo vacío en operaciones de escritura.
+    // Algunas respuestas (ej: DELETE) llegan con body vacío; res.json() reventaría
+    // con "Unexpected end of JSON input". Leemos como texto y parseamos sólo si hay contenido.
     const raw = await res.text();
-    if (!raw) return { status: res.status };
-    try {
-      return JSON.parse(raw);
-    } catch {
-      return { status: res.status, raw };
-    }
+    if (!raw) return {};
+    try { return JSON.parse(raw); } catch { return raw; }
   }
 
   get(path, params = {}) {
@@ -92,11 +84,71 @@ class ZohoClient {
     return this._request("GET", qs ? `${path}?${qs}` : path);
   }
 
+  // Fetches all pages for endpoints that use page/per_page + page_info.has_next_page.
+  async getAllPages(path, params = {}, itemsKey = "tasks") {
+    const all = [];
+    let page = 1;
+    for (;;) {
+      const r = await this.get(path, { ...params, page, per_page: 200 });
+      const items = r[itemsKey] || [];
+      all.push(...items);
+      const hasNext = r.page_info?.has_next_page;
+      if (hasNext !== true && hasNext !== "true") break;
+      page++;
+    }
+    return all;
+  }
+
   post(path, body)  { return this._request("POST",   path, body); }
-  // V2 (/restapi/) espera application/x-www-form-urlencoded
-  postForm(path, body) { return this._request("POST", path, body, true); }
   patch(path, body) { return this._request("PATCH",  path, body); }
   delete(path)      { return this._request("DELETE", path); }
+
+  // POST form-urlencoded a la API v3. Necesario para endpoints que esperan multipart/form-data
+  // (ej: addbulktimelogs). Los valores en body deben ser strings; los arrays/objetos deben
+  // pasarse ya serializados como JSON string.
+  async postForm(path, body) {
+    const url = path.startsWith("/api/")
+      ? `https://projectsapi.zoho.com${path}`
+      : `${BASE_URL}${path}`;
+    const send = () => fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Zoho-oauthtoken ${this.accessToken}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(body).toString(),
+    });
+    let res = await send();
+    if (res.status === 401) {
+      await this._refresh();
+      res = await send();
+    }
+    const raw = await res.text();
+    if (!raw) return {};
+    try { return JSON.parse(raw); } catch { return raw; }
+  }
+
+  // POST form-urlencoded a la API v2 (/restapi). Necesario para endpoints que solo existen
+  // en v2, como la creación de subtareas. Refresca el token en 401 igual que _request.
+  async postFormV2(path, body) {
+    const url = `https://projectsapi.zoho.com/restapi${path}`;
+    const send = () => fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Zoho-oauthtoken ${this.accessToken}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(body).toString(),
+    });
+    let res = await send();
+    if (res.status === 401) {
+      await this._refresh();
+      res = await send();
+    }
+    const raw = await res.text();
+    if (!raw) return {};
+    try { return JSON.parse(raw); } catch { return raw; }
+  }
 }
 
 export const zohoClient = new ZohoClient();

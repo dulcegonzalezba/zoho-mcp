@@ -52,17 +52,23 @@ class ZohoClient {
     this._save();
   }
 
-  async _request(method, path, body = null) {
+  async _request(method, path, body = null, form = false) {
     const options = {
       method,
       headers: { Authorization: `Zoho-oauthtoken ${this.accessToken}` },
     };
     if (body) {
-      options.headers["Content-Type"] = "application/json";
-      options.body = JSON.stringify(body);
+      if (form) {
+        options.headers["Content-Type"] = "application/x-www-form-urlencoded";
+        options.body = new URLSearchParams(body).toString();
+      } else {
+        options.headers["Content-Type"] = "application/json";
+        options.body = JSON.stringify(body);
+      }
     }
 
-    const url = path.startsWith("/api/")
+    // /api/ y /restapi/ (V2) cuelgan de la raíz; el resto se prefija con la base V3.
+    const url = /^\/(api|restapi)\//.test(path)
       ? `https://projectsapi.zoho.com${path}`
       : `${BASE_URL}${path}`;
     let res = await fetch(url, options);
@@ -71,7 +77,14 @@ class ZohoClient {
       options.headers.Authorization = `Zoho-oauthtoken ${this.accessToken}`;
       res = await fetch(url, options);
     }
-    return res.json();
+    // V2 puede responder con cuerpo vacío en operaciones de escritura.
+    const raw = await res.text();
+    if (!raw) return { status: res.status };
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return { status: res.status, raw };
+    }
   }
 
   get(path, params = {}) {
@@ -80,6 +93,8 @@ class ZohoClient {
   }
 
   post(path, body)  { return this._request("POST",   path, body); }
+  // V2 (/restapi/) espera application/x-www-form-urlencoded
+  postForm(path, body) { return this._request("POST", path, body, true); }
   patch(path, body) { return this._request("PATCH",  path, body); }
   delete(path)      { return this._request("DELETE", path); }
 }

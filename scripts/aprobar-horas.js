@@ -158,6 +158,18 @@ const esDelEquipo = log => {
   });
 };
 
+/** Un registro cuenta como documentado si su campo `notes` trae texto real. */
+const conNota = (l) => String(l.notes ?? "").trim().length > 0;
+/** Nota con contenido real, no un "avance" o un "ok" sueltos. */
+const notaUtil = (l) => String(l.notes ?? "").trim().length >= 20;
+/** Registro capturado el mismo día o al siguiente del día trabajado. */
+const aTiempo = (l) => {
+  if (!l.date || !l.created_time) return false;
+  const dias = (new Date(l.created_time.slice(0, 10)) - new Date(l.date)) / 86400000;
+  return dias >= 0 && dias <= 1;
+};
+const esAdmin = (l) => /ADMON|ADMINISTRA/i.test(l.project?.name || "");
+
 // Aprobación en lote: PATCH /portal/{id}/logs con un array.
 // OJO: `module` va como string con el tipo ("task" / "issue"). Enviarlo como
 // objeto {id, type} devuelve PATTERN_NOT_MATCHED.
@@ -253,6 +265,30 @@ function generarMarkdown(data, semanas, meta, resumenAprobacion) {
     }).join(" | ")} |\n`;
   }
 
+  md += `\n## Uso de notas en los registros\n\n`;
+  md += `> Un registro sin nota no dice en qué se trabajó: el tiempo cuenta, pero no se puede explicar ni auditar.\n\n`;
+  md += `| Persona | Registros | Con nota | Sin nota | % con nota |\n|---|---:|---:|---:|---:|\n`;
+  for (const d of data) {
+    const con = d.ls.filter(conNota).length, tot = d.ls.length;
+    md += `| ${d.nombre} | ${tot} | ${con} | ${tot - con} | ${tot ? Math.round(con * 100 / tot) : 0}% |\n`;
+  }
+  {
+    const todos = data.flatMap(d => d.ls), con = todos.filter(conNota).length;
+    md += `| **TOTAL** | **${todos.length}** | **${con}** | **${todos.length - con}** | **${todos.length ? Math.round(con * 100 / todos.length) : 0}%** |\n`;
+  }
+
+  md += `\n## Indicadores de valor del registro\n\n`;
+  md += `> Mide qué tan utilizable es la hora registrada, no cuántas son. **Nota útil**: la nota tiene 20 caracteres o más. **A tiempo**: se capturó el mismo día o al siguiente del día trabajado. **Admin**: horas en proyectos de administración interna.\n\n`;
+  md += `| Persona | Registros | h/registro | Días con registro | A tiempo | Nota útil | Proyectos | % admin |\n|---|---:|---:|---:|---:|---:|---:|---:|\n`;
+  for (const d of data) {
+    const n = d.ls.length || 1;
+    const dias = new Set(d.ls.map(l => l.date)).size;
+    const proy = new Set(d.ls.map(l => l.project?.name)).size;
+    const adminM = d.ls.filter(esAdmin).reduce((a, l) => a + mins(l), 0);
+    const totM = d.ls.reduce((a, l) => a + mins(l), 0) || 1;
+    md += `| ${d.nombre} | ${d.ls.length} | ${dec(totM / n)} | ${dias} de ${semanas.reduce((a, s) => a + s.habiles, 0)} | ${Math.round(d.ls.filter(aTiempo).length * 100 / n)}% | ${Math.round(d.ls.filter(notaUtil).length * 100 / n)}% | ${proy} | ${Math.round(adminM * 100 / totM)}% |\n`;
+  }
+
   md += `\n## Distribución por proyecto\n\n| Persona | Proyectos (horas) |\n|---|---|\n`;
   for (const d of data) {
     const pr = {};
@@ -286,7 +322,64 @@ function generarMarkdown(data, semanas, meta, resumenAprobacion) {
       md += `| ${l.date} | ${l.log_hour} | ${l.type} | ${l.project?.name || ""} | ${ent} | ${nota} |\n`;
     }
   }
+  md += `\n---\n\n## Resumen ejecutivo\n\n`;
+  for (const [titulo, texto] of deducir(data, semanas, meta))
+    md += `**${titulo}.** ${String(texto).replace(/<\/?b>/g, "**")}\n\n`;
+  md += `_Lectura automática de los datos del mes. La meta de ${meta} h no descuenta vacaciones, incapacidades ni festivos; cada señal requiere confirmación antes de tomarse como conclusión._\n`;
   return md;
+}
+
+
+/** Deduce los hallazgos del mes a partir de los datos ya calculados.
+ *  Devuelve frases en lenguaje llano; cada una se apoya en un número del informe,
+ *  nunca en una apreciación. */
+function deducir(data, semanas, meta) {
+  const todos = data.flatMap(d => d.ls);
+  const habiles = semanas.reduce((a, s) => a + s.habiles, 0);
+  const horas = (d) => d.tot / 60;
+  const pct = (d) => Math.round(horas(d) * 100 / meta);
+  const pctNota = (d) => d.ls.length ? Math.round(d.ls.filter(conNota).length * 100 / d.ls.length) : 0;
+  const pctUtil = (d) => d.ls.length ? Math.round(d.ls.filter(notaUtil).length * 100 / d.ls.length) : 0;
+  const pctAdmin = (d) => {
+    const tot = d.ls.reduce((a, l) => a + mins(l), 0) || 1;
+    return Math.round(d.ls.filter(esAdmin).reduce((a, l) => a + mins(l), 0) * 100 / tot);
+  };
+  const pctTiempo = (d) => d.ls.length ? Math.round(d.ls.filter(aTiempo).length * 100 / d.ls.length) : 0;
+  const nom = (d) => d.nombre;
+  const lista = (arr, f = nom) => arr.map(f).join(", ");
+
+  const totalH = todos.reduce((a, l) => a + mins(l), 0) / 60;
+  const metaTotal = meta * data.length;
+  const notaG = todos.length ? Math.round(todos.filter(conNota).length * 100 / todos.length) : 0;
+  const utilG = todos.length ? Math.round(todos.filter(notaUtil).length * 100 / todos.length) : 0;
+  const tiempoG = todos.length ? Math.round(todos.filter(aTiempo).length * 100 / todos.length) : 0;
+
+  const arriba = data.filter(d => pct(d) >= 100);
+  const bajos = data.filter(d => pct(d) < 60);
+  const sinNotas = data.filter(d => pctNota(d) < 60);
+  const notaPobre = data.filter(d => pctNota(d) >= 60 && pctUtil(d) < 60);
+  const adminAlto = data.filter(d => pctAdmin(d) >= 70);
+  const pocosDias = data.filter(d => new Set(d.ls.map(l => l.date)).size < habiles * 0.6);
+  const bloquesGrandes = data.filter(d => d.ls.length && (d.tot / d.ls.length) / 60 >= 7);
+  const largos = todos.filter(l => mins(l) > 12 * 60);
+  const finde = todos.filter(l => [0, 6].includes(new Date(`${l.date}T00:00:00Z`).getUTCDay()));
+
+  const H = [];
+  H.push([`Cumplimiento`, `El equipo registró <b>${totalH.toFixed(0)} h</b> de las <b>${metaTotal.toFixed(0)} h</b> de referencia (${Math.round(totalH * 100 / metaTotal)} %). ` +
+    (arriba.length ? `Por encima de la meta: <b>${lista(arriba)}</b>. ` : "") +
+    (bajos.length ? `Por debajo del 60 %: <b>${lista(bajos)}</b> — antes de leerlo como falta de carga hay que descontar vacaciones, incapacidades y altas a mitad de mes.` : "")]);
+  H.push([`Oportunidad del registro`, tiempoG >= 90
+    ? `<b>${tiempoG} %</b> de los registros se capturaron el mismo día o al siguiente. El equipo no está cargando el mes al final, que es la principal fuente de horas inventadas.`
+    : `Solo <b>${tiempoG} %</b> de los registros se capturó el mismo día o al siguiente: hay captura en bloque, y eso vuelve el dato poco confiable.`]);
+  H.push([`Trazabilidad`, `<b>${notaG} %</b> de los registros trae nota y <b>${utilG} %</b> trae una nota con contenido real. ` +
+    (sinNotas.length ? `Sin nota en más del 40 % de sus registros: <b>${lista(sinNotas)}</b>. Esas horas cuentan para el total pero no se pueden explicar ante el cliente ni auditar. ` : "") +
+    (notaPobre.length ? `Con nota pero demasiado breve para servir: <b>${lista(notaPobre)}</b>.` : "")]);
+  if (adminAlto.length) H.push([`Concentración en administración`, `<b>${lista(adminAlto.map(d => `${nom(d)} (${pctAdmin(d)} %)`), x => x)}</b> tienen la mayor parte de su tiempo en proyectos de administración interna. ` +
+    `Hay dos lecturas y conviene distinguirlas: que efectivamente su trabajo sea de gestión, o que estén cargando a administración tiempo que corresponde a un proyecto. En el segundo caso, el costo por proyecto del año está subestimado.`]);
+  if (bloquesGrandes.length) H.push([`Granularidad`, `<b>${lista(bloquesGrandes.map(d => `${nom(d)} (${((d.tot / d.ls.length) / 60).toFixed(1)} h por registro)`), x => x)}</b> registran la jornada en un solo bloque. Un bloque diario único impide saber en qué se fue el día y suele venir acompañado de nota ausente o genérica.`]);
+  if (pocosDias.length) H.push([`Continuidad`, `<b>${lista(pocosDias.map(d => `${nom(d)} (${new Set(d.ls.map(l => l.date)).size} de ${habiles} días)`), x => x)}</b> registraron en menos del 60 % de los días hábiles. Revisar si fue alta reciente, vacaciones o registro pendiente.`]);
+  if (largos.length || finde.length) H.push([`Señales a verificar`, `${largos.length} registro(s) de más de 12 h en un día` + (finde.length ? ` y ${finde.length} en sábado o domingo` : "") + `. Los primeros suelen ser un timer que se quedó corriendo; los segundos cuentan como trabajadas pero no suman días hábiles a la meta.`]);
+  return H;
 }
 
 function generarHtml(data, semanas, meta, resumenAprobacion) {
@@ -419,6 +512,47 @@ function generarHtml(data, semanas, meta, resumenAprobacion) {
     </tbody>
   </table>
 
+  <h2 class="section">Uso de notas en los registros</h2>
+  <p class="nota">Un registro sin nota no dice en qué se trabajó: el tiempo cuenta, pero no se puede explicar ni auditar.</p>
+  <table class="avoid">
+    <thead><tr><th>Persona</th><th class="num">Registros</th><th class="num">Con nota</th><th class="num">Sin nota</th><th class="num">% con nota</th></tr></thead>
+    <tbody>
+    ${data.map(d => {
+      const con = d.ls.filter(conNota).length, tot = d.ls.length;
+      const pct = tot ? Math.round(con * 100 / tot) : 0;
+      const cls = pct >= 90 ? "ok" : pct >= 60 ? "med" : "crit";
+      return `<tr><td>${esc(d.nombre)}</td><td class="num">${tot}</td><td class="num">${con}</td><td class="num">${tot - con}</td><td class="num"><span class="pill ${cls}">${pct}%</span></td></tr>`;
+    }).join("\n    ")}
+    ${(() => {
+      const todos = data.flatMap(d => d.ls), con = todos.filter(conNota).length;
+      const pct = todos.length ? Math.round(con * 100 / todos.length) : 0;
+      return `<tr><td><b>TOTAL</b></td><td class="num"><b>${todos.length}</b></td><td class="num"><b>${con}</b></td><td class="num"><b>${todos.length - con}</b></td><td class="num"><b>${pct}%</b></td></tr>`;
+    })()}
+    </tbody>
+  </table>
+
+  <h2 class="section">Indicadores de valor del registro</h2>
+  <p class="nota">Mide qué tan utilizable es la hora registrada, no cuántas son. <b>Nota útil</b>: 20 caracteres o más. <b>A tiempo</b>: capturada el mismo día o al siguiente. <b>Admin</b>: horas en proyectos de administración interna.</p>
+  <table class="avoid">
+    <thead><tr><th>Persona</th><th class="num">Registros</th><th class="num">h/registro</th><th class="num">Días con registro</th><th class="num">A tiempo</th><th class="num">Nota útil</th><th class="num">Proyectos</th><th class="num">% admin</th></tr></thead>
+    <tbody>
+    ${data.map(d => {
+      const n = d.ls.length || 1;
+      const dias = new Set(d.ls.map(l => l.date)).size;
+      const proy = new Set(d.ls.map(l => l.project?.name)).size;
+      const adminM = d.ls.filter(esAdmin).reduce((a, l) => a + mins(l), 0);
+      const totM = d.ls.reduce((a, l) => a + mins(l), 0) || 1;
+      const pTiempo = Math.round(d.ls.filter(aTiempo).length * 100 / n);
+      const pNota = Math.round(d.ls.filter(notaUtil).length * 100 / n);
+      const pill = (v) => v >= 90 ? "ok" : v >= 60 ? "med" : "crit";
+      return `<tr><td>${esc(d.nombre)}</td><td class="num">${d.ls.length}</td><td class="num">${dec(totM / n)}</td><td class="num">${dias} de ${semanas.reduce((a, s) => a + s.habiles, 0)}</td>`
+        + `<td class="num"><span class="pill ${pill(pTiempo)}">${pTiempo}%</span></td>`
+        + `<td class="num"><span class="pill ${pill(pNota)}">${pNota}%</span></td>`
+        + `<td class="num">${proy}</td><td class="num">${Math.round(adminM * 100 / totM)}%</td></tr>`;
+    }).join("\n    ")}
+    </tbody>
+  </table>
+
   <h2 class="section">Distribución por proyecto</h2>
   <table>
     <thead><tr><th>Persona</th><th>Proyectos (horas)</th></tr></thead>
@@ -454,6 +588,10 @@ ${data.map(d => `<div class="page persona">
     </tbody></table>` : "<p>Sin registros en el periodo.</p>"}
 </div>`).join("\n")}
 
+  <h2 class="section">Resumen ejecutivo</h2>
+  ${deducir(data, semanas, meta).map(([titulo, texto]) =>
+    `<p style="margin:8px 0"><b>${esc(titulo)}.</b> ${texto}</p>`).join("\n  ")}
+  <p class="nota" style="margin-top:14px">Lectura automática de los datos del mes. La meta de ${meta} h no descuenta vacaciones, incapacidades ni festivos; cada señal requiere confirmación antes de tomarse como conclusión.</p>
 </body>
 </html>`;
 }

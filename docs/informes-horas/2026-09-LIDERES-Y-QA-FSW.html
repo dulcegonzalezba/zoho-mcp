@@ -1,0 +1,1244 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Informe de horas LIDERES Y QA FSW 2026-09</title>
+<style>
+  :root{
+    --slate:#3C4E5D; --slate-dark:#2C3A46; --gold:#C7B383; --gold-soft:#EFE8D6;
+    --ink:#22303a; --muted:#6b7a85; --line:#dfe4e8; --bg-soft:#f6f8f9;
+    --ok:#2f855a; --ok-bg:#e6f4ec; --warn:#b7791f; --warn-bg:#fbf3e2;
+    --crit:#c0392b; --crit-bg:#fbeae8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       color:var(--ink);font-size:12px;line-height:1.5;
+       -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .page{padding:0 34px;}
+  .cover{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+         text-align:center;background:linear-gradient(160deg,#fdfdfc 0%,var(--gold-soft) 100%);
+         page-break-after:always;padding:40px;}
+  .cover img{width:280px;max-width:70%;margin-bottom:40px;}
+  .cover .kicker{letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;font-size:13px;margin-bottom:10px;}
+  .cover h1{color:var(--slate);font-size:34px;margin:0 0 8px;font-weight:800;line-height:1.15;}
+  .cover h2{color:var(--muted);font-size:16px;font-weight:500;margin:0 0 36px;}
+  .cover .meta{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 28px;
+               display:grid;grid-template-columns:auto auto;gap:8px 32px;text-align:left;
+               box-shadow:0 6px 24px rgba(60,78,93,.08);}
+  .cover .meta div{font-size:12.5px;}
+  .cover .meta b{color:var(--slate);}
+  .cover .version{margin-top:20px;background:var(--slate);color:#fff;padding:8px 22px;border-radius:8px;
+                  font-size:15px;font-weight:700;letter-spacing:1px;}
+  h2.section{color:var(--slate);font-size:18px;border-bottom:3px solid var(--gold);padding-bottom:6px;margin:28px 0 14px;}
+  h3.item{color:var(--slate-dark);font-size:13.5px;margin:20px 0 6px;padding-left:10px;border-left:4px solid var(--gold);}
+  p{margin:6px 0;}
+  table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:10.5px;}
+  th{background:var(--slate);color:#fff;text-align:left;padding:7px 9px;font-weight:600;}
+  td{padding:6px 9px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:var(--bg-soft);}
+  td.num,th.num{text-align:right;white-space:nowrap;}
+  .pill{display:inline-block;padding:2px 9px;border-radius:20px;font-weight:700;font-size:10px;}
+  .pill.ok{background:var(--ok-bg);color:var(--ok);}
+  .pill.warn{background:var(--warn-bg);color:var(--warn);}
+  .pill.crit{background:var(--crit-bg);color:var(--crit);}
+  .callout{background:var(--bg-soft);border-left:4px solid var(--gold);padding:10px 14px;margin:14px 0;font-size:11px;}
+  .callout.ok{background:var(--ok-bg);border-left-color:var(--ok);}
+  .nota{color:var(--muted);}
+  .avoid{page-break-inside:avoid;}
+  .persona{page-break-before:always;}
+  tfoot td{font-weight:700;background:var(--gold-soft) !important;border-top:2px solid var(--gold);}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <img src="../../assets/sigob-5.png" alt="SIGOB">
+  <div class="kicker">Informe de horas</div>
+  <h1>LIDERES Y QA FSW</h1>
+  <h2>septiembre 2026</h2>
+  <div class="meta">
+    <div><b>Periodo</b></div><div>2026-09-01 a 2026-09-30</div>
+    <div><b>Portal</b></div><div>sigobproyectos</div>
+    <div><b>Personas</b></div><div>11</div>
+    <div><b>Registros</b></div><div>458</div>
+    <div><b>Horas registradas</b></div><div>1469.00 h</div>
+    <div><b>Jornada de referencia</b></div><div>45 h/semana</div>
+  </div>
+  <div class="version">2026-09</div>
+</div>
+
+<div class="page">
+  <h2 class="section">Estado de aprobación</h2>
+  <div class="callout ok"><b>Aprobación:</b> no había registros pendientes. El equipo tiene <b>458 registros</b> en el periodo, todos aprobados.</div>
+
+  <h2 class="section">Base de comparación</h2>
+  <p>Jornada de referencia: <b>45 h/semana = 9 h por día hábil</b>.
+     El periodo tiene <b>22 días hábiles</b>, por lo que la meta del mes es <b>198 h</b>.</p>
+  <div class="callout"><b>Alcance.</b> Solo se cuentan horas registradas en Zoho en este portal, en los tres tipos de registro
+     (<code>task</code>, <code>issue</code>, <code>general</code>). Vacaciones, incapacidades, festivos y trabajo no registrado
+     <b>no</b> están descontados de la meta: un porcentaje bajo no equivale por sí solo a bajo desempeño.</div>
+
+  <h2 class="section">Horas trabajadas vs. horas laborales</h2>
+  <table class="avoid">
+    <thead><tr><th>Persona</th><th class="num">Registros</th><th class="num">Horas</th><th class="num">Meta</th><th class="num">Diferencia</th><th class="num">Cumplimiento</th></tr></thead>
+    <tbody>
+    <tr><td>Mario Alan Merel Tamayo</td><td class="num">32</td><td class="num"><b>218.58 h</b></td>
+        <td class="num">198.00 h</td><td class="num">+20.58 h</td>
+        <td class="num"><span class="pill ok">110%</span></td></tr>
+    <tr><td>paolo payan</td><td class="num">28</td><td class="num"><b>202.35 h</b></td>
+        <td class="num">198.00 h</td><td class="num">+4.35 h</td>
+        <td class="num"><span class="pill ok">102%</span></td></tr>
+    <tr><td>Francisco Alberto Gómez Alegría</td><td class="num">20</td><td class="num"><b>179.67 h</b></td>
+        <td class="num">198.00 h</td><td class="num">-18.33 h</td>
+        <td class="num"><span class="pill warn">91%</span></td></tr>
+    <tr><td>tania ayón</td><td class="num">55</td><td class="num"><b>178.80 h</b></td>
+        <td class="num">198.00 h</td><td class="num">-19.20 h</td>
+        <td class="num"><span class="pill warn">90%</span></td></tr>
+    <tr><td>Luis Elizondo</td><td class="num">49</td><td class="num"><b>160.18 h</b></td>
+        <td class="num">198.00 h</td><td class="num">-37.82 h</td>
+        <td class="num"><span class="pill warn">81%</span></td></tr>
+    <tr><td>miguel angel ramos luna</td><td class="num">42</td><td class="num"><b>123.17 h</b></td>
+        <td class="num">198.00 h</td><td class="num">-74.83 h</td>
+        <td class="num"><span class="pill crit">62%</span></td></tr>
+    <tr><td>José Alfredo Castro Salazar</td><td class="num">49</td><td class="num"><b>108.40 h</b></td>
+        <td class="num">198.00 h</td><td class="num">-89.60 h</td>
+        <td class="num"><span class="pill crit">55%</span></td></tr>
+    <tr><td>Haniel Rojo</td><td class="num">87</td><td class="num"><b>106.45 h</b></td>
+        <td class="num">198.00 h</td><td class="num">-91.55 h</td>
+        <td class="num"><span class="pill crit">54%</span></td></tr>
+    <tr><td>Arley Magnolia Aquino García</td><td class="num">36</td><td class="num"><b>81.93 h</b></td>
+        <td class="num">198.00 h</td><td class="num">-116.07 h</td>
+        <td class="num"><span class="pill crit">41%</span></td></tr>
+    <tr><td>Camila Pérez González</td><td class="num">27</td><td class="num"><b>62.58 h</b></td>
+        <td class="num">198.00 h</td><td class="num">-135.42 h</td>
+        <td class="num"><span class="pill crit">32%</span></td></tr>
+    <tr><td>angel Fernando García Najar</td><td class="num">33</td><td class="num"><b>46.88 h</b></td>
+        <td class="num">198.00 h</td><td class="num">-151.12 h</td>
+        <td class="num"><span class="pill crit">24%</span></td></tr>
+    </tbody>
+    <tfoot><tr><td>TOTAL</td><td class="num">458</td><td class="num">1469.00 h</td>
+      <td class="num">2178.00 h</td><td class="num">-709.00 h</td>
+      <td class="num">67%</td></tr></tfoot>
+  </table>
+
+  <h2 class="section">Desglose semanal</h2>
+  <table class="avoid">
+    <thead><tr><th>Persona</th><th class="num">08-31→09-06<br><span style="font-weight:400;opacity:.8;">meta 36h</span></th><th class="num">09-07→09-13<br><span style="font-weight:400;opacity:.8;">meta 45h</span></th><th class="num">09-14→09-20<br><span style="font-weight:400;opacity:.8;">meta 45h</span></th><th class="num">09-21→09-27<br><span style="font-weight:400;opacity:.8;">meta 45h</span></th><th class="num">09-28→10-04<br><span style="font-weight:400;opacity:.8;">meta 27h</span></th></tr></thead>
+    <tbody>
+    <tr><td>Mario Alan Merel Tamayo</td><td class="num">38.38</td><td class="num">56.43</td><td class="num">21.82</td><td class="num">62.27</td><td class="num">39.68</td></tr>
+    <tr><td>paolo payan</td><td class="num">37.67</td><td class="num">51.28</td><td class="num">37.63</td><td class="num">49.40</td><td class="num">26.37</td></tr>
+    <tr><td>Francisco Alberto Gómez Alegría</td><td class="num">44.92</td><td class="num">44.92</td><td class="num">44.92</td><td class="num">26.95</td><td class="num">17.97</td></tr>
+    <tr><td>tania ayón</td><td class="num">27.52</td><td class="num">44.95</td><td class="num">34.90</td><td class="num">42.57</td><td class="num">28.87</td></tr>
+    <tr><td>Luis Elizondo</td><td class="num">36.15</td><td class="num">44.95</td><td class="num">23.75</td><td class="num">27.97</td><td class="num">27.37</td></tr>
+    <tr><td>miguel angel ramos luna</td><td class="num">17.73</td><td class="num">25.60</td><td class="num">18.65</td><td class="num">39.23</td><td class="num">21.95</td></tr>
+    <tr><td>José Alfredo Castro Salazar</td><td class="num">4.80</td><td class="num">29.13</td><td class="num">19.82</td><td class="num">34.60</td><td class="num">20.05</td></tr>
+    <tr><td>Haniel Rojo</td><td class="num">16.37</td><td class="num">18.58</td><td class="num">20.13</td><td class="num">37.70</td><td class="num">13.67</td></tr>
+    <tr><td>Arley Magnolia Aquino García</td><td class="num">9.37</td><td class="num">26.15</td><td class="num">13.13</td><td class="num">20.85</td><td class="num">12.43</td></tr>
+    <tr><td>Camila Pérez González</td><td class="num"><span class="nota">—</span></td><td class="num"><span class="nota">—</span></td><td class="num">17.03</td><td class="num">27.93</td><td class="num">17.62</td></tr>
+    <tr><td>angel Fernando García Najar</td><td class="num"><span class="nota">—</span></td><td class="num"><span class="nota">—</span></td><td class="num">9.25</td><td class="num">21.98</td><td class="num">15.65</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section">Horas por tipo de registro</h2>
+  <table class="avoid">
+    <thead><tr><th>Persona</th><th class="num">task</th><th class="num">issue</th><th class="num">general</th></tr></thead>
+    <tbody>
+    <tr><td>Mario Alan Merel Tamayo</td><td class="num">211.77</td><td class="num">6.82</td><td class="num"><span class="nota">—</span></td></tr>
+    <tr><td>paolo payan</td><td class="num">198.73</td><td class="num">3.62</td><td class="num"><span class="nota">—</span></td></tr>
+    <tr><td>Francisco Alberto Gómez Alegría</td><td class="num">179.67</td><td class="num"><span class="nota">—</span></td><td class="num"><span class="nota">—</span></td></tr>
+    <tr><td>tania ayón</td><td class="num">178.80</td><td class="num"><span class="nota">—</span></td><td class="num"><span class="nota">—</span></td></tr>
+    <tr><td>Luis Elizondo</td><td class="num">158.63</td><td class="num">1.55</td><td class="num"><span class="nota">—</span></td></tr>
+    <tr><td>miguel angel ramos luna</td><td class="num">122.55</td><td class="num">0.62</td><td class="num"><span class="nota">—</span></td></tr>
+    <tr><td>José Alfredo Castro Salazar</td><td class="num">108.40</td><td class="num"><span class="nota">—</span></td><td class="num"><span class="nota">—</span></td></tr>
+    <tr><td>Haniel Rojo</td><td class="num">106.45</td><td class="num"><span class="nota">—</span></td><td class="num"><span class="nota">—</span></td></tr>
+    <tr><td>Arley Magnolia Aquino García</td><td class="num">81.93</td><td class="num"><span class="nota">—</span></td><td class="num"><span class="nota">—</span></td></tr>
+    <tr><td>Camila Pérez González</td><td class="num">62.58</td><td class="num"><span class="nota">—</span></td><td class="num"><span class="nota">—</span></td></tr>
+    <tr><td>angel Fernando García Najar</td><td class="num">46.88</td><td class="num"><span class="nota">—</span></td><td class="num"><span class="nota">—</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section">Uso de notas en los registros</h2>
+  <p class="nota">Un registro sin nota no dice en qué se trabajó: el tiempo cuenta, pero no se puede explicar ni auditar.</p>
+  <table class="avoid">
+    <thead><tr><th>Persona</th><th class="num">Registros</th><th class="num">Con nota</th><th class="num">Sin nota</th><th class="num">% con nota</th></tr></thead>
+    <tbody>
+    <tr><td>Mario Alan Merel Tamayo</td><td class="num">32</td><td class="num">31</td><td class="num">1</td><td class="num"><span class="pill ok">97%</span></td></tr>
+    <tr><td>paolo payan</td><td class="num">28</td><td class="num">22</td><td class="num">6</td><td class="num"><span class="pill med">79%</span></td></tr>
+    <tr><td>Francisco Alberto Gómez Alegría</td><td class="num">20</td><td class="num">0</td><td class="num">20</td><td class="num"><span class="pill crit">0%</span></td></tr>
+    <tr><td>tania ayón</td><td class="num">55</td><td class="num">52</td><td class="num">3</td><td class="num"><span class="pill ok">95%</span></td></tr>
+    <tr><td>Luis Elizondo</td><td class="num">49</td><td class="num">28</td><td class="num">21</td><td class="num"><span class="pill crit">57%</span></td></tr>
+    <tr><td>miguel angel ramos luna</td><td class="num">42</td><td class="num">42</td><td class="num">0</td><td class="num"><span class="pill ok">100%</span></td></tr>
+    <tr><td>José Alfredo Castro Salazar</td><td class="num">49</td><td class="num">49</td><td class="num">0</td><td class="num"><span class="pill ok">100%</span></td></tr>
+    <tr><td>Haniel Rojo</td><td class="num">87</td><td class="num">87</td><td class="num">0</td><td class="num"><span class="pill ok">100%</span></td></tr>
+    <tr><td>Arley Magnolia Aquino García</td><td class="num">36</td><td class="num">32</td><td class="num">4</td><td class="num"><span class="pill med">89%</span></td></tr>
+    <tr><td>Camila Pérez González</td><td class="num">27</td><td class="num">27</td><td class="num">0</td><td class="num"><span class="pill ok">100%</span></td></tr>
+    <tr><td>angel Fernando García Najar</td><td class="num">33</td><td class="num">27</td><td class="num">6</td><td class="num"><span class="pill med">82%</span></td></tr>
+    <tr><td><b>TOTAL</b></td><td class="num"><b>458</b></td><td class="num"><b>397</b></td><td class="num"><b>61</b></td><td class="num"><b>87%</b></td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section">Indicadores de valor del registro</h2>
+  <p class="nota">Mide qué tan utilizable es la hora registrada, no cuántas son. <b>Nota útil</b>: 20 caracteres o más. <b>A tiempo</b>: capturada el mismo día o al siguiente. <b>Admin</b>: horas en proyectos de administración interna.</p>
+  <table class="avoid">
+    <thead><tr><th>Persona</th><th class="num">Registros</th><th class="num">h/registro</th><th class="num">Días con registro</th><th class="num">A tiempo</th><th class="num">Nota útil</th><th class="num">Proyectos</th><th class="num">% admin</th></tr></thead>
+    <tbody>
+    <tr><td>Mario Alan Merel Tamayo</td><td class="num">32</td><td class="num">6.83</td><td class="num">19 de 22</td><td class="num"><span class="pill ok">100%</span></td><td class="num"><span class="pill ok">97%</span></td><td class="num">5</td><td class="num">96%</td></tr>
+    <tr><td>paolo payan</td><td class="num">28</td><td class="num">7.23</td><td class="num">21 de 22</td><td class="num"><span class="pill ok">96%</span></td><td class="num"><span class="pill med">75%</span></td><td class="num">3</td><td class="num">95%</td></tr>
+    <tr><td>Francisco Alberto Gómez Alegría</td><td class="num">20</td><td class="num">8.98</td><td class="num">20 de 22</td><td class="num"><span class="pill ok">100%</span></td><td class="num"><span class="pill crit">0%</span></td><td class="num">1</td><td class="num">0%</td></tr>
+    <tr><td>tania ayón</td><td class="num">55</td><td class="num">3.25</td><td class="num">21 de 22</td><td class="num"><span class="pill ok">98%</span></td><td class="num"><span class="pill med">82%</span></td><td class="num">3</td><td class="num">12%</td></tr>
+    <tr><td>Luis Elizondo</td><td class="num">49</td><td class="num">3.27</td><td class="num">21 de 22</td><td class="num"><span class="pill ok">100%</span></td><td class="num"><span class="pill crit">51%</span></td><td class="num">6</td><td class="num">17%</td></tr>
+    <tr><td>miguel angel ramos luna</td><td class="num">42</td><td class="num">2.93</td><td class="num">22 de 22</td><td class="num"><span class="pill ok">100%</span></td><td class="num"><span class="pill ok">100%</span></td><td class="num">3</td><td class="num">9%</td></tr>
+    <tr><td>José Alfredo Castro Salazar</td><td class="num">49</td><td class="num">2.21</td><td class="num">22 de 22</td><td class="num"><span class="pill ok">100%</span></td><td class="num"><span class="pill med">80%</span></td><td class="num">2</td><td class="num">18%</td></tr>
+    <tr><td>Haniel Rojo</td><td class="num">87</td><td class="num">1.22</td><td class="num">25 de 22</td><td class="num"><span class="pill ok">99%</span></td><td class="num"><span class="pill ok">95%</span></td><td class="num">6</td><td class="num">78%</td></tr>
+    <tr><td>Arley Magnolia Aquino García</td><td class="num">36</td><td class="num">2.28</td><td class="num">21 de 22</td><td class="num"><span class="pill ok">100%</span></td><td class="num"><span class="pill med">89%</span></td><td class="num">3</td><td class="num">89%</td></tr>
+    <tr><td>Camila Pérez González</td><td class="num">27</td><td class="num">2.32</td><td class="num">10 de 22</td><td class="num"><span class="pill ok">100%</span></td><td class="num"><span class="pill ok">93%</span></td><td class="num">1</td><td class="num">0%</td></tr>
+    <tr><td>angel Fernando García Najar</td><td class="num">33</td><td class="num">1.42</td><td class="num">10 de 22</td><td class="num"><span class="pill ok">100%</span></td><td class="num"><span class="pill med">67%</span></td><td class="num">1</td><td class="num">0%</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section">Distribución por proyecto</h2>
+  <table>
+    <thead><tr><th>Persona</th><th>Proyectos (horas)</th></tr></thead>
+    <tbody>
+    <tr><td>Mario Alan Merel Tamayo</td><td>SIGOB-ADMON <b>209.68h</b> · OAX-GRP <b>3.27h</b> · SOPORTE-REPUVE <b>2.32h</b> · NAY-ING-STE <b>2.25h</b> · SIGOB-MULTAPP <b>1.07h</b></td></tr>
+    <tr><td>paolo payan</td><td>SIGOB-ADMON <b>191.95h</b> · JAL-SIR+ <b>9.32h</b> · NAY-ING-STE <b>1.08h</b></td></tr>
+    <tr><td>Francisco Alberto Gómez Alegría</td><td>SIGOB-SIR-LITE <b>179.67h</b></td></tr>
+    <tr><td>tania ayón</td><td>SIGOB-ADM-QA <b>156.90h</b> · SIGOB-ADMON <b>21.83h</b> · JAL-SIR+ <b>0.07h</b></td></tr>
+    <tr><td>Luis Elizondo</td><td>SIGOB-ADM-QA <b>94.08h</b> · NAY-ING-STE <b>34.07h</b> · SIGOB-ADMON <b>26.87h</b> · NAV-SIR <b>3.62h</b> · OAX-GRP <b>1.12h</b> · NAY-ING <b>0.43h</b></td></tr>
+    <tr><td>miguel angel ramos luna</td><td>SIGOB-DEV-INFRA-DBA <b>111.78h</b> · SIGOB-ADMON <b>10.77h</b> · NAY-IPROVINAY <b>0.62h</b></td></tr>
+    <tr><td>José Alfredo Castro Salazar</td><td>SIGOB-ADM-QA <b>89.18h</b> · SIGOB-ADMON <b>19.22h</b></td></tr>
+    <tr><td>Haniel Rojo</td><td>SIGOB-ADMON <b>82.67h</b> · TLJ-CAT <b>13.50h</b> · NAY-ING-STE <b>6.57h</b> · JAL-SIR+ <b>2.53h</b> · NAY-ING <b>0.82h</b> · OAX-GRP <b>0.37h</b></td></tr>
+    <tr><td>Arley Magnolia Aquino García</td><td>SIGOB-ADMON <b>72.73h</b> · NAY-FAN <b>9.18h</b> · EJEMPLO_CAPACITACION_FEBRERO2026 <b>0.02h</b></td></tr>
+    <tr><td>Camila Pérez González</td><td>SIGOB-AGENTE-ATC <b>62.58h</b></td></tr>
+    <tr><td>angel Fernando García Najar</td><td>SIGOB-AGENTE-ATC <b>46.88h</b></td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section">Anexo: calidad del dato</h2>
+  <p>A revisar antes de tomar estos números como definitivos:</p>
+  <p><b>4 registros de más de 12 h en un solo día</b> — patrón típico de timer que se quedó corriendo.</p>
+  <table class="avoid">
+    <thead><tr><th class="num">Horas</th><th>Fecha</th><th>Persona</th><th>Proyecto</th><th>Nota</th></tr></thead>
+    <tbody><tr><td class="num"><b>20:30</b></td><td>2026-09-25</td><td>Mario Alan Merel Tamayo</td><td>SIGOB-ADMON</td><td>(sin nota)</td></tr><tr><td class="num"><b>15:21</b></td><td>2026-09-11</td><td>Mario Alan Merel Tamayo</td><td>SIGOB-ADMON</td><td>Se trabajó en actividades diarias y en apoyo al equipo de QA en sus validaciones para despliegue y se hizo el despliegue de todas las tareas del proyecto de Nayarit</td></tr><tr><td class="num"><b>13:16</b></td><td>2026-09-29</td><td>Mario Alan Merel Tamayo</td><td>SIGOB-ADMON</td><td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Seguimiento al equipo , actualizacion de servidores, revision de temas y revisiones de codigo&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td class="num"><b>13:15</b></td><td>2026-09-28</td><td>Mario Alan Merel Tamayo</td><td>SIGOB-ADMON</td><td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Se trabajo en la creacion de una propuesta de dashboard para el departamento de Finanzas en el SIAT . A falta de zoho&amp;nbsp; por ser peticion "especial" se trabajo en este timer ademas de las tareas diarias de seguimiento con mi equipo&amp;nbsp;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr></tbody>
+  </table>
+  <p><b>61 de 458 registros sin nota</b> (13%): no se puede auditar en qué se fue ese tiempo.</p>
+  <p><b>12 registros en sábado o domingo</b> (56.98 h): cuentan como trabajadas pero no suman días hábiles a la meta.</p>
+</div>
+
+<div class="page persona">
+  <h2 class="section">Mario Alan Merel Tamayo</h2>
+  <p class="nota">32 registros · <b>218.58 h</b> de 198 h · 110% · mario.merel@sigob.com.mx</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-01</td><td class="num">09:46</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Estabilización de Oaxaca </td></tr><tr><td>2026-09-02</td><td class="num">09:04</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Estabilización de temas de Oaxaca </td></tr><tr><td>2026-09-02</td><td class="num">00:21</td><td>issue</td><td>OAX-GRP</td>
+       <td>OAX-I846 OAX: Filtro &amp;quot;Tipo De Convenio&amp;quot; en Consulta de Convenios necesita 2 clics en &amp;quot;Buscar&amp;quot; para aplicar</td>
+       <td>Se solvento el tema ajustando la logica de los filtros </td></tr><tr><td>2026-09-03</td><td class="num">00:07</td><td>issue</td><td>OAX-GRP</td>
+       <td>OAX-I850 OAX: Error al querer cancelar una alerta</td>
+       <td>Se trabajo corregir el problema</td></tr><tr><td>2026-09-03</td><td class="num">00:10</td><td>issue</td><td>OAX-GRP</td>
+       <td>OAX-I851 OAX: Error en la visualización de cantidad de decimales en ventanilla del padrón comercio</td>
+       <td>Se corrigio la propiedad que renderizaba la informacion incorrecta por la correcta</td></tr><tr><td>2026-09-03</td><td class="num">09:41</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Estabilizacion de oaxaca, reuniones espontaneas</td></tr><tr><td>2026-09-04</td><td class="num">09:14</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Actividades diarias , creación de Excel de carga de trabajo/tareas por programador , ayuda con insumos y reuniones </td></tr><tr><td>2026-09-07</td><td class="num">01:06</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T46 FRONTEND SIR: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Reunión mensual FSW Agosto</td></tr><tr><td>2026-09-07</td><td class="num">09:19</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Actividades varias , investigación de alternativas para pipes de Jalisco retys y sir , apoyo al equipo con sus tareas </td></tr><tr><td>2026-09-08</td><td class="num">09:58</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Actividades de seguimiento diarias, meet que se checo tema de citas en repuve, documento de propuesta para despliegue paralelo en jalisco. Lista de EP's usados en los portales de Oaxaca, Nayarit y Navojoa</td></tr><tr><td>2026-09-09</td><td class="num">10:09</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Apoyo al Equipo de QA con flujos de pago en portal , apoyo a actualizar prs en proyecto al equipo </td></tr><tr><td>2026-09-10</td><td class="num">10:33</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Apoyo al equipo de QA, seguimiento de tareas con el equipo , ajustes de repuve </td></tr><tr><td>2026-09-11</td><td class="num">15:21</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Se trabajó en actividades diarias y en apoyo al equipo de QA en sus validaciones para despliegue y se hizo el despliegue de todas las tareas del proyecto de Nayarit</td></tr><tr><td>2026-09-14</td><td class="num">00:10</td><td>issue</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-I8 NAY-ST: [FRONTEND] Editar Usuarios rompe la app por completo (pantalla en blanco) en retys -- causado por el fix de P068 (SonarQube) en Select.jsx</td>
+       <td>Se ajusto un bug del hook de la Paginacion</td></tr><tr><td>2026-09-14</td><td class="num">10:22</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Apoyo al equipo de QA con incidencias , actividades diarias</td></tr><tr><td>2026-09-15</td><td class="num">01:12</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T47 FRONTEND SIR: Dailys reuniones de equipo</td>
+       <td>Se tomó la daily con el equipo con participación especial de Dulce y Arley</td></tr><tr><td>2026-09-15</td><td class="num">10:05</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Apoyo al equipo en general, revisiones de codigo y actuaiizacion de servidores</td></tr><tr><td>2026-09-21</td><td class="num">09:57</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Seguimiento al equipo , revisión de proyectos , actualización de servidores </td></tr><tr><td>2026-09-22</td><td class="num">10:08</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>Apoyo al equipo , revisión de zohos </td></tr><tr><td>2026-09-23</td><td class="num">07:50</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;revisión de código , apoyo y orientación al equipo con sus tareas&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-23</td><td class="num">02:19</td><td>issue</td><td>SOPORTE-REPUVE</td>
+       <td>SO1-I99 REP-SOP: Tramite cambio de propietario no permite continuar</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Se concluyo que el tema venia por que el registro venia eliminado&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-24</td><td class="num">09:08</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;revisión de código , apoyo y orientación al equipo con sus tareas&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-25</td><td class="num">02:05</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T369 NAY-ST: [FRONTEND] Se requiere un task para la consulta-caja/padron que este siempre funcionando para archivos grandes</td>
+       <td>Se trabajo en aplicar Pooling a la funcion que validaba/procesaba los archivos para emparejar la funcion que se trabajo en el back </td></tr><tr><td>2026-09-25</td><td class="num">00:19</td><td>issue</td><td>SIGOB-MULTAPP</td>
+       <td>MULTAPP-I55 MULTAPP-SAL: No se pueden crear conceptos de Infracciones en SIR SALAMANCA</td>
+       <td>Se agrego seguridad al campo para que siempre se llene</td></tr><tr><td>2026-09-25</td><td class="num">20:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-28</td><td class="num">00:45</td><td>issue</td><td>SIGOB-MULTAPP</td>
+       <td>MULTAPP-I56 MULTAPP SAL: Eliminar modulos y configuraciones de reincidencias</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Se eliminaron vistas relacionadas a reincidencias (no se usan en el proyecto)&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-28</td><td class="num">13:15</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Se trabajo en la creacion de una propuesta de dashboard para el departamento de Finanzas en el SIAT . A falta de zoho&amp;nbsp; por ser peticion "especial" se trabajo en este timer ademas de las tareas diarias de seguimiento con mi equipo&amp;nbsp;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-29</td><td class="num">00:32</td><td>issue</td><td>OAX-GRP</td>
+       <td>OAX-I859 [FRONTEND] OAX: Error desde el portal para descargar XML</td>
+       <td>Se corrigio la prop con la que se descarga</td></tr><tr><td>2026-09-29</td><td class="num">13:16</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Seguimiento al equipo , actualizacion de servidores, revision de temas y revisiones de codigo&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-30</td><td class="num">09:47</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T20 FRONTEND SIR: Administración de actividades de FRONTEND</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Actividades diarias de seguimiento del equipo&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-30</td><td class="num">01:28</td><td>issue</td><td>OAX-GRP</td>
+       <td>OAX-I860 [FRONTEND] OAX: Sistema detecta mal la fecha de vencimiento</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Se trabajo en el fix del tema reportado, corrigiendo la funcion que determinaba si la fecha de vencimiento concordaba&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-30</td><td class="num">00:38</td><td>issue</td><td>OAX-GRP</td>
+       <td>OAX-I849 OAX: [FRONTEND] Error en la extensión de descarga del reporte Layout Carga Detallado por Dia</td>
+       <td>Se corrigio el problema que provocaba doble extension</td></tr>
+    </tbody></table>
+</div>
+<div class="page persona">
+  <h2 class="section">paolo payan</h2>
+  <p class="nota">28 registros · <b>202.35 h</b> de 198 h · 102% · paolo.payan@sigob.com.mx</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-01</td><td class="num">09:25</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>el dia de hoy estuve desplegando a pruebas diferentes cambios en demos, nayarit y navojoa pruebas, ademas tuve Weekly con el equipo de lideres y reunion de jalisco</td></tr><tr><td>2026-09-02</td><td class="num">09:38</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>Durante el dia de hoy atendí la daily con mi equipo, estuve desplegando a pruebas temas de jalisco, oaxaca y nayarit, también se reconstruyo celery de repuve, cree un nuevo repositorio de oaxaca para el despliegue a prod</td></tr><tr><td>2026-09-03</td><td class="num">09:10</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>el dia de hoy trabaje en soporte a oaxaca con tema de consulta de adeudos y referencias pagables en la orden de pago, también estube actualizando el zoho con pendientes de actualizaciónes que se hicieron</td></tr><tr><td>2026-09-04</td><td class="num">09:27</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>Estuve actualizando el zoho, tuve mi daily, atendi un tema de oaxaca con respecto a redis</td></tr><tr><td>2026-09-07</td><td class="num">09:25</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-08</td><td class="num">09:13</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;durante este timer atendi daily, trabaje en revisión de pendientes para despliegue a pruebas, ajuste un tema de vulnerabilidad en endpoint de citas en repuve&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-09</td><td class="num">09:09</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>tuve mi daily attend soporte oaxaca, hice despliegue a pruebas de nayarit </td></tr><tr><td>2026-09-10</td><td class="num">06:32</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-10</td><td class="num">03:10</td><td>task</td><td>JAL-SIR+</td>
+       <td>JA2-T509 JAL-SIR+: [BACKEND] Limpieza de codigo</td>
+       <td>se trabajo en dejar logica limpia del proyecto de jalisco </td></tr><tr><td>2026-09-11</td><td class="num">01:05</td><td>issue</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-I7 NAY-ST: [BACKEND] Rechazo real de NetPay rompe el registro del error en backend -- registros-de-errores (400 folio) y respuesta-netpay/almacenar (400 transactionDto) fallan, ciudadano cae en pantalla generica</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-11</td><td class="num">08:06</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>atendi mi daily, ademas tuve sesion para despliegue a prod y se esta preparando todo para el despliegue</td></tr><tr><td>2026-09-11</td><td class="num">04:37</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>estuve trabajando en la liberación a producción de Nayarit</td></tr><tr><td>2026-09-14</td><td class="num">09:42</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>atendi el daily con el equipo backend, también tuve sesion con gente de tlajo simun para temas de convenios y weekly con dulce, el dia de hoy también se trabajo en actualizar zoho de las actualizaciones de prod del viernes y se saco un formato con todo el analisis, ademas se estuvo desplegando a pruebas de tlajo, navojoa y nayarit</td></tr><tr><td>2026-09-14</td><td class="num">09:53</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>trabaje envió de correo masivo para cancelación de citas repuve, también se tuvo meet de jalisco </td></tr><tr><td>2026-09-17</td><td class="num">08:57</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-18</td><td class="num">09:06</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>el dia de hoy se trabajo en la propuesta para autenticación en dos pasos. se atendió daily con el equipo y de zoho con arlethe, también se actualizaron ambientes de pruebas nayarit y navojoa y se tuvo sesion de seguimiento de jalisco</td></tr><tr><td>2026-09-21</td><td class="num">06:20</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>tuve daily, estuve apoyando al equipo con sus solicitudes y actualice entornos de pruebas</td></tr><tr><td>2026-09-21</td><td class="num">03:17</td><td>task</td><td>JAL-SIR+</td>
+       <td>JA2-T532 JAL-SIR+: [BACKEND] Polling de consulta de adeudos y generación de recibos — estandarizar estatus y optimizar</td>
+       <td>trabaje en logica para mejorar el polling de consulta de adeudo, aun me falta implementar un nuevo modelo para el control de estatus del task </td></tr><tr><td>2026-09-22</td><td class="num">09:22</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>El dia de hoy se desplegaron a pruebas en omapas y jalisco, se trabajo en un refactor de la app de control de versiones en los ambientes de prueba y atendi dos meets uno del server de tlajomulco y otro de seguimiento al proyecto del sir+&lt;div&gt;&lt;br&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-23</td><td class="num">08:48</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-24</td><td class="num">09:46</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>el dia de hoy trabaje en actualizar distintos ambientes productivos, apoye al equipo facilitándoles lo que me requerían, también se actualizo el server de prod nayarit por eso apague el timer un poco mas tarde </td></tr><tr><td>2026-09-25</td><td class="num">08:37</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>estuve liberando pendientes a navojoa, nayarit y jalisco, ademas trabaje en el refactor del polling </td></tr><tr><td>2026-09-25</td><td class="num">02:32</td><td>issue</td><td>JAL-SIR+</td>
+       <td>JA2-I25 JAL-SIR+: [BACK] Los recibos salen sin datos en el encabezado (ambiente de QA)</td>
+       <td>se agrego la info del contribuyente al recibo</td></tr><tr><td>2026-09-26</td><td class="num">00:42</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T42 BACKEND SIR: Dailys reuniones de equipo</td>
+       <td>meet jalisco</td></tr><tr><td>2026-09-28</td><td class="num">06:17</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>trabaje en la version para jalisco mañana la presentacion con el cliente</td></tr><tr><td>2026-09-28</td><td class="num">00:20</td><td>task</td><td>JAL-SIR+</td>
+       <td>JA2-T507 JAL-SIR+: [BACKEND] Lectura firmada del XML del CFDI desde S3 (elimina URL pública con TLS desactivado)</td>
+       <td>se agrego logica replicada de oaxaca</td></tr><tr><td>2026-09-29</td><td class="num">10:15</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td>el dia de hoy trabaje en subir lo que estaba pendiente de subir a los ambientes de pruebas, se corrigio bug en salamanca para infracciones y se ajusto en citas de repuve logica</td></tr><tr><td>2026-09-30</td><td class="num">09:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T19 BACKEND SIR: Administración de actividades de BACKEND</td>
+       <td><span class="nota">(sin nota)</span></td></tr>
+    </tbody></table>
+</div>
+<div class="page persona">
+  <h2 class="section">Francisco Alberto Gómez Alegría</h2>
+  <p class="nota">20 registros · <b>179.67 h</b> de 198 h · 91% · francisco.gomez@sigob.com.mx</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-01</td><td class="num">08:59</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-02</td><td class="num">09:02</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-03</td><td class="num">08:57</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-04</td><td class="num">08:57</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-05</td><td class="num">09:00</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-08</td><td class="num">09:00</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-09</td><td class="num">08:57</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-10</td><td class="num">09:01</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-11</td><td class="num">08:59</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-12</td><td class="num">08:58</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-15</td><td class="num">09:00</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-16</td><td class="num">09:01</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-17</td><td class="num">08:57</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-18</td><td class="num">08:59</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-19</td><td class="num">08:58</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-24</td><td class="num">08:59</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-25</td><td class="num">08:58</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-26</td><td class="num">09:00</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-29</td><td class="num">08:59</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-30</td><td class="num">08:59</td><td>task</td><td>SIGOB-SIR-LITE</td>
+       <td>SIR-LITE-T125 SIR-LITE: Gestión y revisión de tareas en Zoho del proyecto</td>
+       <td><span class="nota">(sin nota)</span></td></tr>
+    </tbody></table>
+</div>
+<div class="page persona">
+  <h2 class="section">tania ayón</h2>
+  <p class="nota">55 registros · <b>178.80 h</b> de 198 h · 90% · tania.ayon@sigob.com.mx</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-01</td><td class="num">04:23</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T17 QA- REV: REVISIÓN DE LA APP MULTAPP DE SALAMANCA</td>
+       <td>Reunión para presentar MultiApp Salamanca, reportando fallas que se encontraron y haciendo pruebas de las mismas</td></tr><tr><td>2026-09-01</td><td class="num">03:00</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T8 QA- REV: REVISIÓN DE APLICACIÓN MÓVIL DE APP CIUDADANO (PARTE1)</td>
+       <td>revisión de nuevos cambios de la app</td></tr><tr><td>2026-09-01</td><td class="num">01:25</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T17 QA- REV: REVISIÓN DE LA APP MULTAPP DE SALAMANCA</td>
+       <td>pruebas en la app MultApp, para verificar la ubicación</td></tr><tr><td>2026-09-02</td><td class="num">02:17</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T8 QA- REV: REVISIÓN DE APLICACIÓN MÓVIL DE APP CIUDADANO (PARTE1)</td>
+       <td>pausa por reunión para dudas, estuve revisando la app del ciudadano</td></tr><tr><td>2026-09-02</td><td class="num">00:58</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T106 QA: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Dudas de flujo de estutus en los issues</td></tr><tr><td>2026-09-03</td><td class="num">08:03</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T8 QA- REV: REVISIÓN DE APLICACIÓN MÓVIL DE APP CIUDADANO (PARTE1)</td>
+       <td>Estuve revisando la app del ciudadano y cerrando problemas que se habían levantado.</td></tr><tr><td>2026-09-04</td><td class="num">07:25</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T8 QA- REV: REVISIÓN DE APLICACIÓN MÓVIL DE APP CIUDADANO (PARTE1)</td>
+       <td>Revisión de la app del ciudadano, cerrando problemas que estaban abiertos y otros quedaron abiertos ya que aún seguía fallando</td></tr><tr><td>2026-09-07</td><td class="num">03:11</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T8 QA- REV: REVISIÓN DE APLICACIÓN MÓVIL DE APP CIUDADANO (PARTE1)</td>
+       <td>revisión de la funcionalidad de la app</td></tr><tr><td>2026-09-07</td><td class="num">00:55</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T17 QA- REV: REVISIÓN DE LA APP MULTAPP DE SALAMANCA</td>
+       <td>pruebas MulApp</td></tr><tr><td>2026-09-07</td><td class="num">01:05</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T106 QA: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td> Reunión mensual de FSW de agosto</td></tr><tr><td>2026-09-07</td><td class="num">01:26</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T17 QA- REV: REVISIÓN DE LA APP MULTAPP DE SALAMANCA</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-08</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T8 QA- REV: REVISIÓN DE APLICACIÓN MÓVIL DE APP CIUDADANO (PARTE1)</td>
+       <td>puasa por daily de equipo</td></tr><tr><td>2026-09-08</td><td class="num">00:37</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>avanvces y dudas de lo trabajado ayer en MultApp</td></tr><tr><td>2026-09-08</td><td class="num">02:07</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T8 QA- REV: REVISIÓN DE APLICACIÓN MÓVIL DE APP CIUDADANO (PARTE1)</td>
+       <td>revisando funcionalidad de la app del ciudadano</td></tr><tr><td>2026-09-08</td><td class="num">02:09</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>estuvimos haciendo la solicitud con wizard y revisando que todo flueyera perfecto para llegar a esta tarea.. aTambién hubo reunión de "Integración de revisiones QA" pero olvidé prender el timer ahí </td></tr><tr><td>2026-09-08</td><td class="num">00:43</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T17 QA- REV: REVISIÓN DE LA APP MULTAPP DE SALAMANCA</td>
+       <td>pruebas de error de app</td></tr><tr><td>2026-09-09</td><td class="num">01:13</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>pausa por daily de equipo QA</td></tr><tr><td>2026-09-09</td><td class="num">00:50</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>fueron 2 dailys, una de equipo de QA, para ver avances de loq ue se trabajo ayer y de ahí la del FAN para darnos indicaciones para el llenado nuevo de tiempos estimados para el FAN </td></tr><tr><td>2026-09-09</td><td class="num">03:04</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>revisión app MulApp lite (comida)</td></tr><tr><td>2026-09-09</td><td class="num">04:26</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-10</td><td class="num">01:04</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>pausa por Daily</td></tr><tr><td>2026-09-10</td><td class="num">01:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Reunión de avances de revisiones en QA</td></tr><tr><td>2026-09-10</td><td class="num">09:22</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>Revisando y haciendo pruebas en MultApp, Describiendo los Issues encontrados</td></tr><tr><td>2026-09-11</td><td class="num">01:20</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>pausa por Daily</td></tr><tr><td>2026-09-11</td><td class="num">01:18</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Se hablo de como vamos avanzando en QA, fortalezas y puntos de vista para mejorar esta parte</td></tr><tr><td>2026-09-11</td><td class="num">08:07</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>REvisión de pasos de la Multapp lite</td></tr><tr><td>2026-09-14</td><td class="num">02:09</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>revisión Multapp encontando nuevos issues</td></tr><tr><td>2026-09-14</td><td class="num">01:31</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T106 QA: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Reunión de presentación de wizard para aprendan a llenarlo</td></tr><tr><td>2026-09-14</td><td class="num">07:06</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>revisión de MultApp encontré algunas detalles y estuve en contacto con francisco alegría para atenderlos y sabes si eran issues reales </td></tr><tr><td>2026-09-15</td><td class="num">01:25</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>pausa por daily</td></tr><tr><td>2026-09-15</td><td class="num">00:31</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>No se pospuso pero me quede con Alfredo a que me explicara unos temas </td></tr><tr><td>2026-09-15</td><td class="num">06:00</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>&lt;div&gt;&lt;div&gt;REGISTRO Y VALIDO ARLEY AQUINO DEBIDO A ERROR DE TIMER:&lt;br&gt;&lt;/div&gt;&lt;br&gt;VALIDACIÓN DE QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo&lt;/div&gt;</td></tr><tr><td>2026-09-17</td><td class="num">01:33</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>pausa por daily </td></tr><tr><td>2026-09-17</td><td class="num">03:40</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>la reunión duro aprox 1 hora, solo que se eme paso apagar el timer y seguí trabajando, se tocaron dudas y aclaraciones de como trabajar en zoho</td></tr><tr><td>2026-09-17</td><td class="num">03:26</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>Revisión multapp lite y comuncaando faltantes de app cudadano y para oomapas</td></tr><tr><td>2026-09-18</td><td class="num">00:49</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>pausa por daily </td></tr><tr><td>2026-09-18</td><td class="num">00:23</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>avances diarios de las revisiones QA</td></tr><tr><td>2026-09-18</td><td class="num">05:19</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T18 QA-MULTAPPLI-T1: [FRONTEND] Validar límites del DTO al crear vehículos desde padrón externo</td>
+       <td>pausa por reunión Arley </td></tr><tr><td>2026-09-18</td><td class="num">01:02</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T106 QA: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>atención de timer que se quedo encendido</td></tr><tr><td>2026-09-21</td><td class="num">00:31</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T24 QA-MULTAPP-T136-MULTAPP-SAL: [FRONTEND] Eliminar agente y concepto del ticket</td>
+       <td>Se reviso un dato en especifico, persiste la falla, así que se esperará a la siguiente versión para seguir revisando </td></tr><tr><td>2026-09-21</td><td class="num">00:04</td><td>task</td><td>JAL-SIR+</td>
+       <td>JA2-T194 JAL-SIR+: [DISEÑO] WIREFRAMES - MÓDULO USUARIOS, ROLES Y PERMISOS</td>
+       <td>Esta tarea ya estaba terminada hace tiempo </td></tr><tr><td>2026-09-21</td><td class="num">01:19</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T24 QA-MULTAPP-T136-MULTAPP-SAL: [FRONTEND] Eliminar agente y concepto del ticket</td>
+       <td>ya quedo bien la prueba</td></tr><tr><td>2026-09-21</td><td class="num">01:02</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T26 QA- JA2-T304: REVISIÓN FUNCIONAL DEL PORTAL CIUDADANO V2 (JALISCO)</td>
+       <td>pruebas de Jalisco </td></tr><tr><td>2026-09-21</td><td class="num">03:00</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T26 QA- JA2-T304: REVISIÓN FUNCIONAL DEL PORTAL CIUDADANO V2 (JALISCO)</td>
+       <td>revisión portal jalisco</td></tr><tr><td>2026-09-22</td><td class="num">08:34</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T26 QA- JA2-T304: REVISIÓN FUNCIONAL DEL PORTAL CIUDADANO V2 (JALISCO)</td>
+       <td>Revisión del portal de Jalisco, se encontraron varios detalles de diseño y ortografía, se alcanzo a levantar todo lo visual. Quedando pendiente la funcionalidad que se revisará mañana</td></tr><tr><td>2026-09-23</td><td class="num">11:01</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T26 QA- JA2-T304: REVISIÓN FUNCIONAL DEL PORTAL CIUDADANO V2 (JALISCO)</td>
+       <td>Revisión a detalle del portal Jalisco</td></tr><tr><td>2026-09-24</td><td class="num">09:01</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T26 QA- JA2-T304: REVISIÓN FUNCIONAL DEL PORTAL CIUDADANO V2 (JALISCO)</td>
+       <td>Revisión de Portal de Jalisco, haciendo pruebas y vectorizando logos</td></tr><tr><td>2026-09-25</td><td class="num">08:02</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T26 QA- JA2-T304: REVISIÓN FUNCIONAL DEL PORTAL CIUDADANO V2 (JALISCO)</td>
+       <td>Revisión de datos y flujo del portal Jalisco</td></tr><tr><td>2026-09-28</td><td class="num">10:00</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T26 QA- JA2-T304: REVISIÓN FUNCIONAL DEL PORTAL CIUDADANO V2 (JALISCO)</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;CORRIGIÓ Y VALIDO ARLEY AQUINO DEBIDO A ERROR DE TIMER&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;div&gt;ACTIVIDAD realizada&amp;nbsp;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;presentación del portal de Jalisco&amp;nbsp;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-29</td><td class="num">02:01</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Presentación del Portal público de pagos, (portal jalisco)</td></tr><tr><td>2026-09-29</td><td class="num">01:24</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T26 QA- JA2-T304: REVISIÓN FUNCIONAL DEL PORTAL CIUDADANO V2 (JALISCO)</td>
+       <td>Revisión portal jalisco</td></tr><tr><td>2026-09-29</td><td class="num">06:24</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T105 QA: Revisión de tareas/problemas en Zoho</td>
+       <td>Revisión del portal de jalisco y ajuste de reloj con arley, solo que se me paso cambiar el timer</td></tr><tr><td>2026-09-30</td><td class="num">03:31</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T24 QA-MULTAPP-T136-MULTAPP-SAL: [FRONTEND] Eliminar agente y concepto del ticket</td>
+       <td>Pruebas de falla multapp salamnca </td></tr><tr><td>2026-09-30</td><td class="num">00:49</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T26 QA- JA2-T304: REVISIÓN FUNCIONAL DEL PORTAL CIUDADANO V2 (JALISCO)</td>
+       <td>pruebas de MultApp de salamanca y revision del portal</td></tr><tr><td>2026-09-30</td><td class="num">04:43</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T24 QA-MULTAPP-T136-MULTAPP-SAL: [FRONTEND] Eliminar agente y concepto del ticket</td>
+       <td><span class="nota">(sin nota)</span></td></tr>
+    </tbody></table>
+</div>
+<div class="page persona">
+  <h2 class="section">Luis Elizondo</h2>
+  <p class="nota">49 registros · <b>160.18 h</b> de 198 h · 81% · luis.elizondo@sigob.com.mx</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-01</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-01</td><td class="num">10:34</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T2 QA-OAX-QA-001:  PRIMER LOTE DE OAX-GRP</td>
+       <td>Trabajando en Issues y Tareas para el release de OAX</td></tr><tr><td>2026-09-02</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-02</td><td class="num">07:40</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T2 QA-OAX-QA-001:  PRIMER LOTE DE OAX-GRP</td>
+       <td>Trabajando en liberación GRP-OAX</td></tr><tr><td>2026-09-03</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-03</td><td class="num">05:55</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T2 QA-OAX-QA-001:  PRIMER LOTE DE OAX-GRP</td>
+       <td>Monitoreo e issues del release</td></tr><tr><td>2026-09-04</td><td class="num">10:00</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T15 QA-JA2-T232: REVISIÓN QA DE IMPLEMNETACIÓN DE nplsone</td>
+       <td>Mapeo y entendimiento de JAL-SIR+ </td></tr><tr><td>2026-09-04</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-07</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-07</td><td class="num">01:07</td><td>issue</td><td>OAX-GRP</td>
+       <td>OAX-I846 OAX: Filtro &amp;quot;Tipo De Convenio&amp;quot; en Consulta de Convenios necesita 2 clics en &amp;quot;Buscar&amp;quot; para aplicar</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-07</td><td class="num">01:01</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T106 QA: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Reunión de fabrica de software mes de agosto</td></tr><tr><td>2026-09-07</td><td class="num">01:28</td><td>task</td><td>NAV-SIR</td>
+       <td>NA7-T615 NAV: [FRONTEND] &amp;quot;TABLA.adeudo&amp;quot; , Por Control de Cartera en todos los canales de pago (Cajas/PortalPublico/AppMovil/etc.) debera cobrar SOLO con:  cargos.adeudo_base,  actualizaciones.adeudo,  recargos.adeudo, gastos.adeudo, descuentos.saldo_pendiente_del_descuento</td>
+       <td>Trabajando en Tarea de Navojoa</td></tr><tr><td>2026-09-08</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-08</td><td class="num">02:09</td><td>task</td><td>NAV-SIR</td>
+       <td>NA7-T615 NAV: [FRONTEND] &amp;quot;TABLA.adeudo&amp;quot; , Por Control de Cartera en todos los canales de pago (Cajas/PortalPublico/AppMovil/etc.) debera cobrar SOLO con:  cargos.adeudo_base,  actualizaciones.adeudo,  recargos.adeudo, gastos.adeudo, descuentos.saldo_pendiente_del_descuento</td>
+       <td>Tarabajando en Tarea adeudos. Entro a reunion</td></tr><tr><td>2026-09-08</td><td class="num">01:31</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T106 QA: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Reunión con Operaciones </td></tr><tr><td>2026-09-08</td><td class="num">01:59</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T104 NAY-ST: [HITO]  MANEJO AMIGABLE DE ERROR DE NETPAY + RECIBO MANUAL POR LIGA CIFRADA DE USO ÚNICO</td>
+       <td>Trabajando en Hito NABO-T104</td></tr><tr><td>2026-09-09</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-09</td><td class="num">10:50</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T104 NAY-ST: [HITO]  MANEJO AMIGABLE DE ERROR DE NETPAY + RECIBO MANUAL POR LIGA CIFRADA DE USO ÚNICO</td>
+       <td>Trabajando en tareas para la liberacion de Nayarit</td></tr><tr><td>2026-09-10</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-10</td><td class="num">11:04</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T104 NAY-ST: [HITO]  MANEJO AMIGABLE DE ERROR DE NETPAY + RECIBO MANUAL POR LIGA CIFRADA DE USO ÚNICO</td>
+       <td>Trabajando en tareas para liberación de NAY</td></tr><tr><td>2026-09-11</td><td class="num">00:40</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T104 NAY-ST: [HITO]  MANEJO AMIGABLE DE ERROR DE NETPAY + RECIBO MANUAL POR LIGA CIFRADA DE USO ÚNICO</td>
+       <td>Trabajando en Tareas de NAY para liberación.</td></tr><tr><td>2026-09-11</td><td class="num">01:07</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T106 QA: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Reunión actualización Nayarit con desarrollo</td></tr><tr><td>2026-09-11</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-11</td><td class="num">09:31</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T104 NAY-ST: [HITO]  MANEJO AMIGABLE DE ERROR DE NETPAY + RECIBO MANUAL POR LIGA CIFRADA DE USO ÚNICO</td>
+       <td>Trabajando en release de NAY.</td></tr><tr><td>2026-09-14</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-14</td><td class="num">01:06</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T106 QA: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Sesion tecnica de proceso QA</td></tr><tr><td>2026-09-15</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-15</td><td class="num">00:26</td><td>issue</td><td>NAY-ING</td>
+       <td>NA1-I1802 NAY: Padrones declarables no esta redondeando correctamente</td>
+       <td>Trabajando en Issue</td></tr><tr><td>2026-09-15</td><td class="num">05:07</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T21 QA-NA1-I1802: REDONDEO PADRONES DECLARABLES — NAY-ING</td>
+       <td>issue listo para producción.</td></tr><tr><td>2026-09-17</td><td class="num">09:51</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-17</td><td class="num">01:03</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Daily del equipo</td></tr><tr><td>2026-09-17</td><td class="num">02:31</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T23 QA- NA7-T615: TABLA ADEUDO POR CONTROL DE CARTERA</td>
+       <td>Trabajando en recibos para esta tarea. </td></tr><tr><td>2026-09-18</td><td class="num">02:41</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Reunion Avances Jalisco</td></tr><tr><td>2026-09-21</td><td class="num">03:01</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T21 QA-NA1-I1802: REDONDEO PADRONES DECLARABLES — NAY-ING</td>
+       <td>Aplicando revision </td></tr><tr><td>2026-09-21</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-22</td><td class="num">00:01</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-22</td><td class="num">00:46</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T26 QA- JA2-T304: REVISIÓN FUNCIONAL DEL PORTAL CIUDADANO V2 (JALISCO)</td>
+       <td>revision funcional exploratoria, me equivoque de tarea. Cambio a la que estoy laborando.</td></tr><tr><td>2026-09-23</td><td class="num">00:01</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-23</td><td class="num">07:15</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T28 QA- JA2-T242: REVISIÓN FUNCIONAL EXPLORATORIA — CAJA</td>
+       <td>Trabajando en la revision funcional de Caja</td></tr><tr><td>2026-09-24</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-24</td><td class="num">11:02</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T27 QA- JA2-T538: REVISIÓN FUNCIONAL EXPLORATORIA — LEY DE INGRESOS</td>
+       <td>Realizando pruebas de ley de ingresos</td></tr><tr><td>2026-09-25</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-25</td><td class="num">04:22</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T28 QA- JA2-T242: REVISIÓN FUNCIONAL EXPLORATORIA — CAJA</td>
+       <td>trabajando en Happy Path</td></tr><tr><td>2026-09-28</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-28</td><td class="num">10:10</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T27 QA- JA2-T538: REVISIÓN FUNCIONAL EXPLORATORIA — LEY DE INGRESOS</td>
+       <td>Revision funcional de Jalisco</td></tr><tr><td>2026-09-29</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-29</td><td class="num">10:25</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T29 QA- JA2-T454: REVISIÓN FUNCIONAL EXPLORATORIA — PADRONES</td>
+       <td>Atendiendo issues padrones </td></tr><tr><td>2026-09-30</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-30</td><td class="num">05:17</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T2 QA-OAX-QA-001:  PRIMER LOTE DE OAX-GRP</td>
+       <td>Atendiendo Issues en OAX urgentes para producción</td></tr>
+    </tbody></table>
+</div>
+<div class="page persona">
+  <h2 class="section">miguel angel ramos luna</h2>
+  <p class="nota">42 registros · <b>123.17 h</b> de 198 h · 62% · miguel.ramos@sigob.com.mx</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-01</td><td class="num">00:45</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T51 DEVOPS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Weekly de Alineación FS </td></tr><tr><td>2026-09-01</td><td class="num">04:47</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>Automatización y pruebas de envío de correo de descuadres </td></tr><tr><td>2026-09-02</td><td class="num">01:45</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T51 DEVOPS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>sesiones rx y oaxaca </td></tr><tr><td>2026-09-03</td><td class="num">00:37</td><td>issue</td><td>NAY-IPROVINAY</td>
+       <td>IPN-I53 IPROVINAY:Error al ingresar al sistema  en prod y pruebas – Server Error 500</td>
+       <td>Revisión de fallo y corrección de conectividad con BD </td></tr><tr><td>2026-09-03</td><td class="num">01:52</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T85 DEVOPS: Generación de despliegues automáticos para ambientes del VPS</td>
+       <td>cambio de ramas de demos oaxaca </td></tr><tr><td>2026-09-03</td><td class="num">00:39</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T85 DEVOPS: Generación de despliegues automáticos para ambientes del VPS</td>
+       <td>corrección de rama y generación de pipeline para ventanilla oaxaca </td></tr><tr><td>2026-09-03</td><td class="num">03:56</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>corrección de jalisco, modificación de variables de entorno, analisis de alcance a serviicios corrección de iprovinay, se analizó el origen y se detectó temas de red, cambiando la ip privada por la publica </td></tr><tr><td>2026-09-04</td><td class="num">01:26</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T51 DEVOPS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>seguimiento con alfredo, configuración de seguridad</td></tr><tr><td>2026-09-04</td><td class="num">01:57</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>montado de dump de jalisco </td></tr><tr><td>2026-09-07</td><td class="num">00:40</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T51 DEVOPS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>SIAT: Reunión VIRTUAL técnica con DTIF </td></tr><tr><td>2026-09-07</td><td class="num">04:28</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>configuración jalisco (portal y escaneos de seguridad) </td></tr><tr><td>2026-09-07</td><td class="num">00:19</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>migración de BD de reporteador de prod a dev </td></tr><tr><td>2026-09-08</td><td class="num">01:07</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>corrección de errores en sistemas sac </td></tr><tr><td>2026-09-08</td><td class="num">01:43</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T51 DEVOPS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Weekly de Alineación FS</td></tr><tr><td>2026-09-08</td><td class="num">00:45</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T51 DEVOPS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Seguimiento de Proyecto - SIAT Jalisco (Dev y Operaciones)</td></tr><tr><td>2026-09-09</td><td class="num">05:41</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>Configuración de bucket en SAC dev y QA, corrección de errores para su implementación, aplicación de fixtures y migración de BD de SAC, corrección de pipelines jalisco</td></tr><tr><td>2026-09-09</td><td class="num">00:59</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T85 DEVOPS: Generación de despliegues automáticos para ambientes del VPS</td>
+       <td>corrección de jalisco e implementación de escaneos de seguridad </td></tr><tr><td>2026-09-10</td><td class="num">02:50</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>documentación instalación de jalisco</td></tr><tr><td>2026-09-10</td><td class="num">00:17</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>actualización de reporte .sql para descuadres y corrección de error derivado de doble columna con nombre igual</td></tr><tr><td>2026-09-10</td><td class="num">00:07</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>acutalización de reporteador sac</td></tr><tr><td>2026-09-11</td><td class="num">02:08</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>Mgracion de versiones tlajomulco</td></tr><tr><td>2026-09-11</td><td class="num">00:49</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T51 DEVOPS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>sesion Actualización de Nayarit </td></tr><tr><td>2026-09-11</td><td class="num">02:43</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>Revisión Nayarit junto con Montse, migración de tlajo y corrección de errores de sintaxis </td></tr><tr><td>2026-09-11</td><td class="num">01:00</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T85 DEVOPS: Generación de despliegues automáticos para ambientes del VPS</td>
+       <td>configuracion nayarit con tailscale</td></tr><tr><td>2026-09-14</td><td class="num">01:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T51 DEVOPS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Weekly inicio de semana</td></tr><tr><td>2026-09-14</td><td class="num">05:29</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>corrección repuve dev (Diversos temas) avance en retys jalisco y corrección en tlajo con erik</td></tr><tr><td>2026-09-15</td><td class="num">04:11</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T85 DEVOPS: Generación de despliegues automáticos para ambientes del VPS</td>
+       <td>Pipeline Jalisco y pruebas de despliegue (sir y retys)</td></tr><tr><td>2026-09-17</td><td class="num">03:50</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>Atencion a diversos temas de jalisco, auditoria con juan pablo, reasignaicón de dns, solución de errores con alfredo y solución de errores con julio huerta</td></tr><tr><td>2026-09-17</td><td class="num">00:50</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T51 DEVOPS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Seguimiento DEVOPS: Vps </td></tr><tr><td>2026-09-17</td><td class="num">00:37</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>apoyo a montse y juan pablo con temas de nayarit y jalisco respecitvamente </td></tr><tr><td>2026-09-18</td><td class="num">01:39</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>recopilación de datos de repuve y revision de ventanilla jalisco migraciones </td></tr><tr><td>2026-09-18</td><td class="num">00:33</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T51 DEVOPS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Contención inteligente con mínimo privilegio: De la sombra a la visibilidad </td></tr><tr><td>2026-09-21</td><td class="num">05:36</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T85 DEVOPS: Generación de despliegues automáticos para ambientes del VPS</td>
+       <td>Avances Jalisco y corrección de errores en logs</td></tr><tr><td>2026-09-22</td><td class="num">07:02</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>apoyo a montse con nayarit dev, julio con ventanilla jalisco, seguimiento sir lite oaxaca con francisco, apoyo a juan pablo con back jalisco y erick con tlajo</td></tr><tr><td>2026-09-23</td><td class="num">06:53</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>seguimiento jalisco (sistemas y sistema migrador) </td></tr><tr><td>2026-09-24</td><td class="num">07:04</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>avances tlajo y jalisco (migrador) </td></tr><tr><td>2026-09-25</td><td class="num">05:20</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>revisiones y avances en jalisco (sir y gimport) </td></tr><tr><td>2026-09-26</td><td class="num">03:22</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>ambientacion jalisco </td></tr><tr><td>2026-09-26</td><td class="num">03:57</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>migraciones a jalisco nueva bd</td></tr><tr><td>2026-09-28</td><td class="num">06:56</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>avances jalisco, salamanca y temas de dns y pipelines</td></tr><tr><td>2026-09-29</td><td class="num">06:54</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>Correcciones Jalisco, Salamanca y actualización de querys reportes automáticos </td></tr><tr><td>2026-09-30</td><td class="num">08:07</td><td>task</td><td>SIGOB-DEV-INFRA-DBA</td>
+       <td>SIAC-T79 DEVOPS: Backup BD Y ARCHIVOS -  Oaxaca, Navojoa, Jalisco y REPUVE</td>
+       <td>repuve, revision de backup y generación de manuales, configuración de pipelines faltantes para oaxaca demos </td></tr>
+    </tbody></table>
+</div>
+<div class="page persona">
+  <h2 class="section">José Alfredo Castro Salazar</h2>
+  <p class="nota">49 registros · <b>108.40 h</b> de 198 h · 55% · jose.castro@sigob.com.mx</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-01</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seg. Proyectos Nuevas Tecnologías</td></tr><tr><td>2026-09-02</td><td class="num">01:00</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Sesión 1 Abba RX / SIGOB</td></tr><tr><td>2026-09-03</td><td class="num">00:33</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Sesión 2 Abba RX</td></tr><tr><td>2026-09-03</td><td class="num">00:19</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Revisión proyecto QA en Zoho</td></tr><tr><td>2026-09-03</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seg. Proyectos Nuevas Tecnologías</td></tr><tr><td>2026-09-03</td><td class="num">00:28</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seguimiento DEVOPS: Vps</td></tr><tr><td>2026-09-04</td><td class="num">01:28</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Configuración Semgrep/Gitleaks</td></tr><tr><td>2026-09-07</td><td class="num">01:00</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;MODIFICO Y APROBO ARLEY AQUINO DEBIDO A PRUEBAS CON AGENDA DE TIMER:&lt;br&gt;Reunión mensual de FSW- AGOSTO 2026 (CAMARA ENCENDIDA)&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-07</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;AJUSTO TIEMPO Y VALIDO ARLEY AQUINO, DEBIDO A ERROR DE TIMER, ACTIVIDAD REALIZADA:&lt;br&gt;&lt;br&gt;Daily QA&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-08</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seg. Proyectos Nuevas Tecnologías</td></tr><tr><td>2026-09-08</td><td class="num">02:49</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Ejecución de casos de prueba</td></tr><tr><td>2026-09-08</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Daily QA</td></tr><tr><td>2026-09-08</td><td class="num">02:53</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T4 QA-ATM_V1: APLICACIÓN WEB DE AUTOMATIZACIÓN DE SOLICITUDES PARA QA</td>
+       <td>Agregar administración de proyectos y reorganización de tareas y problemas</td></tr><tr><td>2026-09-08</td><td class="num">01:18</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T4 QA-ATM_V1: APLICACIÓN WEB DE AUTOMATIZACIÓN DE SOLICITUDES PARA QA</td>
+       <td>Fixes e integracion de guias para plantillas QA</td></tr><tr><td>2026-09-08</td><td class="num">01:00</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Integración de revisiones QA</td></tr><tr><td>2026-09-09</td><td class="num">02:53</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T4 QA-ATM_V1: APLICACIÓN WEB DE AUTOMATIZACIÓN DE SOLICITUDES PARA QA</td>
+       <td>Agregar enlace a tareas padre y correcciones menores</td></tr><tr><td>2026-09-09</td><td class="num">02:18</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T4 QA-ATM_V1: APLICACIÓN WEB DE AUTOMATIZACIÓN DE SOLICITUDES PARA QA</td>
+       <td>Obtener "Areas tecnicas" para correcta nomenclatura de las tareas</td></tr><tr><td>2026-09-09</td><td class="num">00:29</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Daily QA</td></tr><tr><td>2026-09-09</td><td class="num">00:46</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Automatización de creación de tareas en Zoho -Alfredo</td></tr><tr><td>2026-09-10</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Daily QA</td></tr><tr><td>2026-09-10</td><td class="num">01:00</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seguimiento DEVOPS: Vps</td></tr><tr><td>2026-09-10</td><td class="num">02:07</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Continuo con la revisión de Usuarios, Roles y Permisos</td></tr><tr><td>2026-09-10</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seg. Proyectos Nuevas Tecnologías</td></tr><tr><td>2026-09-10</td><td class="num">03:08</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T4 QA-ATM_V1: APLICACIÓN WEB DE AUTOMATIZACIÓN DE SOLICITUDES PARA QA</td>
+       <td>Corrigiendo errores e integrando el campo custom de area_tecnica</td></tr><tr><td>2026-09-11</td><td class="num">01:00</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Daily QA</td></tr><tr><td>2026-09-13</td><td class="num">03:57</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Contunar ejecutando casos de prueba de usuarios, roles y permisos</td></tr><tr><td>2026-09-14</td><td class="num">01:00</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>SESIÓN TÉCNICA DE PROCESO DE INTEGRACIÓN DE QA</td></tr><tr><td>2026-09-15</td><td class="num">00:06</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Daily QA</td></tr><tr><td>2026-09-15</td><td class="num">07:45</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Ejecución de casos de prueba</td></tr><tr><td>2026-09-15</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seg. Proyectos Nuevas Tecnologías</td></tr><tr><td>2026-09-17</td><td class="num">01:00</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seguimiento DEVOPS: Vps</td></tr><tr><td>2026-09-17</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seg. Proyectos Nuevas Tecnologías</td></tr><tr><td>2026-09-17</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Daily QA</td></tr><tr><td>2026-09-17</td><td class="num">06:30</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Continuo con la ejecucion de Casos de Prueba de APIs</td></tr><tr><td>2026-09-18</td><td class="num">01:58</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Continuo con la revisión de APIs</td></tr><tr><td>2026-09-21</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Daily QA</td></tr><tr><td>2026-09-21</td><td class="num">07:49</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Continuo con revisión de casos de prueba para revisión de APIs y revision de frontend</td></tr><tr><td>2026-09-22</td><td class="num">03:56</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Revision de frontend</td></tr><tr><td>2026-09-22</td><td class="num">00:07</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Daily QA</td></tr><tr><td>2026-09-22</td><td class="num">01:00</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Sesión entendimiento - automatización QA</td></tr><tr><td>2026-09-23</td><td class="num">07:36</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Continuo con la revision del frontend</td></tr><tr><td>2026-09-24</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seg. Proyectos Nuevas Tecnologías</td></tr><tr><td>2026-09-24</td><td class="num">00:27</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Daily QA</td></tr><tr><td>2026-09-24</td><td class="num">07:19</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Continuo con la revisión del frontend.</td></tr><tr><td>2026-09-25</td><td class="num">05:22</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Actualización de base de conocimiento, generación de reglas de negocio y casos de prueba de contribuyentes.</td></tr><tr><td>2026-09-28</td><td class="num">03:29</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Generación de CP contribuyentes e inicio de ejecución. Revisión de APIs.</td></tr><tr><td>2026-09-29</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T107 QA: Dailys reuniones de equipo</td>
+       <td>Seg. Proyectos Nuevas Tecnologías</td></tr><tr><td>2026-09-29</td><td class="num">08:42</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Continuo con ejecución de casos de prueba</td></tr><tr><td>2026-09-30</td><td class="num">07:22</td><td>task</td><td>SIGOB-ADM-QA</td>
+       <td>SIB1-T19 QA-REV-FLUJOS-COMPLETOS-202608</td>
+       <td>Continuo con la ejecución de casos de prueba de contribuyentes (APIs)</td></tr>
+    </tbody></table>
+</div>
+<div class="page persona">
+  <h2 class="section">Haniel Rojo</h2>
+  <p class="nota">87 registros · <b>106.45 h</b> de 198 h · 54% · haniel.rojo@sigob.com.mx</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-01</td><td class="num">01:07</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T37 BASE DE DATOS: Weeklys reuniones de equipo</td>
+       <td>meet de seguimiento de migración Jalisco y se aprovechó el timer para verificar permisos de erick villa en navojoa prod y compilacion de scripts de verificacion de recibos descuadrados en todos los ambientes</td></tr><tr><td>2026-09-01</td><td class="num">01:20</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision de usuarios de bi, reporteria de nayarit, asigancion de zohos a equipo dba y asesoria, suministro de querys validadores de descuadres de nayarit</td></tr><tr><td>2026-09-01</td><td class="num">00:39</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T37 BASE DE DATOS: Weeklys reuniones de equipo</td>
+       <td>weekly de alineacion lideres fsw</td></tr><tr><td>2026-09-01</td><td class="num">00:31</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Meet de seguimiento Jalisco desarrollo</td></tr><tr><td>2026-09-01</td><td class="num">00:38</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>arreglo de recibo descuadrado en nayarit</td></tr><tr><td>2026-09-02</td><td class="num">02:22</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision de recibos descuadrados de navojoa, resultado falso positivo con query validador por lo que se hicieron ajustes al query y se envio a devops para el envio automatico de correos</td></tr><tr><td>2026-09-02</td><td class="num">00:14</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>inicio de sp para calculo de gastos</td></tr><tr><td>2026-09-02</td><td class="num">00:40</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>meet para informe de liberacion a prod de oaxaca</td></tr><tr><td>2026-09-02</td><td class="num">00:49</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>continuación de generacion de sp, a espera de resolucion de dudas</td></tr><tr><td>2026-09-03</td><td class="num">02:09</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>reunion sobre incidentes en liberacion oaxaca productivo y se aprovecho el timer para verificar accesos a las nuevas bases de datos de oaxaca y verificacion de reportes extraidos de base de datos</td></tr><tr><td>2026-09-03</td><td class="num">00:42</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>meet se seguimiento de jalisco siat</td></tr><tr><td>2026-09-04</td><td class="num">03:02</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T117 BASE DE DATOS: Gestión de respaldos de las bases de datos</td>
+       <td>manejo de respaldos de tlajo y jalisco</td></tr><tr><td>2026-09-04</td><td class="num">01:47</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T23 BASE DE DATOS: Gestión de usuarios de las bases de datos</td>
+       <td>Verificación de permisos de tlajo y creación de usuario a Victor Arreola en Navojoa y Tlajo</td></tr><tr><td>2026-09-04</td><td class="num">00:22</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Meet de siat Jalisco</td></tr><tr><td>2026-09-07</td><td class="num">00:34</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T37 BASE DE DATOS: Weeklys reuniones de equipo</td>
+       <td>meet con DTIF Jalisco</td></tr><tr><td>2026-09-07</td><td class="num">00:14</td><td>task</td><td>OAX-GRP</td>
+       <td>OAX-T894 OAX: Reporte de tramites pagados y no pagados de 2025 y 2026</td>
+       <td>extraccion de reporte de tramites pagados y no pagados</td></tr><tr><td>2026-09-07</td><td class="num">00:08</td><td>task</td><td>OAX-GRP</td>
+       <td>OAX-T917 OAX: Reporte de recibos facturados y no facturados</td>
+       <td>exportacion de reporte con fechas actualizadas</td></tr><tr><td>2026-09-07</td><td class="num">00:18</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>continuacion de generacion de sp</td></tr><tr><td>2026-09-07</td><td class="num">00:59</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>meet reunion mensual FSW Agosto 2026</td></tr><tr><td>2026-09-07</td><td class="num">02:22</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>creacion de sp de carga de gastos</td></tr><tr><td>2026-09-08</td><td class="num">00:34</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T23 BASE DE DATOS: Gestión de usuarios de las bases de datos</td>
+       <td>creacion de usuario para victor prieto de tlajo qa y se aprovecho el timer para continuar con el arreglo de registros de nayarit</td></tr><tr><td>2026-09-08</td><td class="num">01:47</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T37 BASE DE DATOS: Weeklys reuniones de equipo</td>
+       <td>meet weekly de lideres fsw</td></tr><tr><td>2026-09-08</td><td class="num">00:57</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>meet de seguimiento SIAT Jalisco</td></tr><tr><td>2026-09-09</td><td class="num">00:38</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>meet con cliente tlajo para seguimiento de requerimientos</td></tr><tr><td>2026-09-09</td><td class="num">00:51</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>correccion de sp</td></tr><tr><td>2026-09-09</td><td class="num">00:22</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T117 BASE DE DATOS: Gestión de respaldos de las bases de datos</td>
+       <td>generacion de script para la generacion limpia de la bd del SIAT Jalisco</td></tr><tr><td>2026-09-09</td><td class="num">00:39</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>continuació nde correccion de funcion de base de datos</td></tr><tr><td>2026-09-09</td><td class="num">00:58</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;conexion a base de datos informix Jalisco para extraccion de sp&lt;/div&gt;</td></tr><tr><td>2026-09-10</td><td class="num">01:38</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision de citas en repuve, descuadres de recibos en diferentes clientes, asesoria a equipo dba</td></tr><tr><td>2026-09-10</td><td class="num">02:16</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>asesoria a equipo dba para realizacion de zohos, suministro de claves para conexiones a Jalisco, asistencia a meet para identificar problema en repuve, atencion a problematica de predios en navojoa</td></tr><tr><td>2026-09-10</td><td class="num">00:42</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>meet de seguimiento SIAT Jalisco</td></tr><tr><td>2026-09-11</td><td class="num">00:12</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>asesoria a equipo dba para actualizacion de datos de recibos</td></tr><tr><td>2026-09-11</td><td class="num">00:42</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>seguimiento de corrección de sp</td></tr><tr><td>2026-09-11</td><td class="num">01:26</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision de recibos</td></tr><tr><td>2026-09-12</td><td class="num">00:18</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>eliminacion de recibos, corte y declaracion por pruebas productivas en nayarit</td></tr><tr><td>2026-09-14</td><td class="num">02:32</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>cambio de funcionalidad de funcion</td></tr><tr><td>2026-09-14</td><td class="num">00:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>busqueda de recibo en oaxaca con base en el nombre del contribuyente</td></tr><tr><td>2026-09-14</td><td class="num">01:05</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T37 BASE DE DATOS: Weeklys reuniones de equipo</td>
+       <td>weekly lideres fsw</td></tr><tr><td>2026-09-14</td><td class="num">00:57</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T90 BASE DE DATOS: Revisión de tareas/problemas en Zoho</td>
+       <td>estimacion de horas en proyecto fan</td></tr><tr><td>2026-09-15</td><td class="num">00:19</td><td>task</td><td>NAY-ING</td>
+       <td>NA1-T2102 NAY: [BD] Solicitud de generacion de reporte de declarantes de nomina</td>
+       <td>generacion de reporte de nomina</td></tr><tr><td>2026-09-15</td><td class="num">00:10</td><td>task</td><td>NAY-ING</td>
+       <td>NA1-T2103 NAY: [BD] Solicitud de generacion de reporte de declarantes de juegos y apuestas</td>
+       <td>generacion de reporte de juegos y apuestas</td></tr><tr><td>2026-09-15</td><td class="num">00:36</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>reunion con cliente tlajo para seguimiento de solicitudes</td></tr><tr><td>2026-09-15</td><td class="num">01:28</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>seguimiento de datos en la bd y verificacion de SP</td></tr><tr><td>2026-09-15</td><td class="num">00:59</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision de cargos de tlajo para asignarles la descripcion correcta de gastos de notificacion</td></tr><tr><td>2026-09-15</td><td class="num">01:50</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>reunion de seguimiento siat jalisco</td></tr><tr><td>2026-09-17</td><td class="num">01:41</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>se realizaron ultimas pruebas de ejecucion para asegurar que el usuario suministrado al cliente pueda ejecutar de forma correcta el sp, envio de correos relacionado y seguimiento para finalizacion de tarea</td></tr><tr><td>2026-09-17</td><td class="num">00:12</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T23 BASE DE DATOS: Gestión de usuarios de las bases de datos</td>
+       <td>actualizacion de permisos a jose navarro en tlajo qa</td></tr><tr><td>2026-09-17</td><td class="num">00:40</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>creacion de grupo para seguimiento de proyecto agente ia con prestadores de servicio</td></tr><tr><td>2026-09-17</td><td class="num">02:35</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>revision de tareas asignadas a practicantes para proyecto IA, indicaciones de prioridades a equipo DBA y seguimiento de asignaciones, revision de predios en tlajo</td></tr><tr><td>2026-09-17</td><td class="num">00:32</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision de configuracion de ventanilla unica de jalisco qa</td></tr><tr><td>2026-09-17</td><td class="num">00:41</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>modificacion de sp</td></tr><tr><td>2026-09-17</td><td class="num">01:07</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>asistencia a meet de asesoria a encargado sir/lite</td></tr><tr><td>2026-09-18</td><td class="num">00:29</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T117 BASE DE DATOS: Gestión de respaldos de las bases de datos</td>
+       <td>extraccion de schema de base de datos repuve</td></tr><tr><td>2026-09-18</td><td class="num">00:18</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>envio de funcion a prod y ajuste de permisos para su consumo</td></tr><tr><td>2026-09-18</td><td class="num">00:31</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>busqueda de vehiculos con comportamiento anomalo en su placa y sus tramites/recibos asociados</td></tr><tr><td>2026-09-18</td><td class="num">00:20</td><td>task</td><td>NAY-ING</td>
+       <td>NA1-T2104 NAY: [BD] Eliminar cargos de contribuyente hasta el 31 de agosto</td>
+       <td>eliminación de cargos</td></tr><tr><td>2026-09-19</td><td class="num">00:36</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision/arreglo de descuadre de recibos a causa de aplicacion de zoho NA1-T2104</td></tr><tr><td>2026-09-21</td><td class="num">01:31</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T102 BASE DE DATOS: Validaciones de base de datos en tareas/problemas</td>
+       <td>revision de tareas dba, auditorias a recibos en oaxaca y nayarit, seguimiento a comentarios / tareas en zoho, seguimiento a tareas de Jalisco</td></tr><tr><td>2026-09-21</td><td class="num">01:06</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T23 BASE DE DATOS: Gestión de usuarios de las bases de datos</td>
+       <td>administracion de usuarios de bd de Jalisco QA y DEV, así como entendimiento de auditorias de tablas en Jalisco DEV</td></tr><tr><td>2026-09-21</td><td class="num">01:55</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision y entendimiento de las funciones de auditoria de Jalisco dev para uso directo en dba</td></tr><tr><td>2026-09-21</td><td class="num">01:01</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T37 BASE DE DATOS: Weeklys reuniones de equipo</td>
+       <td>weekly de lideres fsw</td></tr><tr><td>2026-09-22</td><td class="num">00:08</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>actualizacion de datos en bd jalisco pruebas para pruebas qa</td></tr><tr><td>2026-09-22</td><td class="num">01:21</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T248 NAY-ST: [BACKEND] Corrección de recibos generados incorrectamente en modulo de registro de pagos</td>
+       <td>rectificacion de recibos por solicitud del cliente a importes indicados</td></tr><tr><td>2026-09-22</td><td class="num">00:55</td><td>task</td><td>TLJ-CAT</td>
+       <td>TL2-T573 TLJ-CAT: Solicitud SP para carga de gastos</td>
+       <td>ajuste al SP por petición del cliente</td></tr><tr><td>2026-09-22</td><td class="num">04:22</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>inicio de protocolo de seguridad de datos para establecer el proceso de enmascaramiento de datos</td></tr><tr><td>2026-09-22</td><td class="num">00:12</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>solicitud de consulta de declaraciones empresariales </td></tr><tr><td>2026-09-22</td><td class="num">02:36</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T248 NAY-ST: [BACKEND] Corrección de recibos generados incorrectamente en modulo de registro de pagos</td>
+       <td>arreglo de dos recibos de los 4 faltantes</td></tr><tr><td>2026-09-23</td><td class="num">02:30</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>continuación con el proceso de enmascaracion de datos de las bases de datos</td></tr><tr><td>2026-09-23</td><td class="num">01:00</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>meet para ver la cantidad de extraccion de informacion de la bd de jalisco informix</td></tr><tr><td>2026-09-23</td><td class="num">02:06</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>analisis de sp_adeudovehicular para determinar los sp y funciones anidados , extraccion de informacion necesaria para migracion de conceptos de cobro Jalisco</td></tr><tr><td>2026-09-23</td><td class="num">02:49</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>extraccion de datos de bd informix Jalisco, analisis de árbol de SP de cálculo de adeudo de vehiculos</td></tr><tr><td>2026-09-24</td><td class="num">00:56</td><td>task</td><td>JAL-SIR+</td>
+       <td>JA2-T545 JAL-SIR+: [BD] Extracción y análisis de datos y SP de conceptos de cobro</td>
+       <td>primer analisis de sp adeudovehicular</td></tr><tr><td>2026-09-24</td><td class="num">00:17</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T248 NAY-ST: [BACKEND] Corrección de recibos generados incorrectamente en modulo de registro de pagos</td>
+       <td>corrección de recibo a cantidad solicitada por el cliente</td></tr><tr><td>2026-09-24</td><td class="num">01:25</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T23 BASE DE DATOS: Gestión de usuarios de las bases de datos</td>
+       <td>creacion de usuario de solo lectura en bd de aplicativo migrador jalisco, creacion de documento de entrega de credenciales y validaciones de conexion</td></tr><tr><td>2026-09-24</td><td class="num">00:52</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>reunion de seguimiento SIAT Jalisco</td></tr><tr><td>2026-09-25</td><td class="num">00:53</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T117 BASE DE DATOS: Gestión de respaldos de las bases de datos</td>
+       <td>gestion de usuario en bd aplicativo migrador y permisos a abril en tlajo prod</td></tr><tr><td>2026-09-25</td><td class="num">01:36</td><td>task</td><td>JAL-SIR+</td>
+       <td>JA2-T546 JAL-SIR+: [BD] Validación de recibos generados en SIAT y portal — sin descuadres, bien guardados en adeudos y con sus métodos de pago</td>
+       <td>validaciones de recibos en ambiente Jalisco QA</td></tr><tr><td>2026-09-26</td><td class="num">01:03</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision de datos de recibo con diferentes importes en nayarit, revision de subida de basees de datos de Jalisco</td></tr><tr><td>2026-09-27</td><td class="num">07:08</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>migracion de bd jalisco qa mezclando con bd datos_migrados</td></tr><tr><td>2026-09-28</td><td class="num">00:40</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T23 BASE DE DATOS: Gestión de usuarios de las bases de datos</td>
+       <td>creacion de credenciales a arlethe mora en oaxaca y gstion de usuario para bi de Jalisco</td></tr><tr><td>2026-09-28</td><td class="num">02:56</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision de datos de QA Jalisco, asesoria a equipo dba, gestion de BI QA Jalisco, continuacion de proceso de enmascaramiento de datos como politica de dba</td></tr><tr><td>2026-09-29</td><td class="num">01:10</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>asesoria a practicante para definicion de agente atc, revision de recibos en nayarit, meet para ver problematica con recibos</td></tr><tr><td>2026-09-29</td><td class="num">02:06</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T389 NAY-ST: [BD] Corrección de recibos cuando realizan descuentos manuales en el cobro de los mismos</td>
+       <td>correccion de recibos en nay y se aprovecho para checar con los demás clientes</td></tr><tr><td>2026-09-29</td><td class="num">00:14</td><td>task</td><td>NAY-ING-STE</td>
+       <td>NAYSTE-T387 NAY-ST: [BD] Corrección recibo 29/09/26</td>
+       <td>correccion de recibo</td></tr><tr><td>2026-09-30</td><td class="num">01:33</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>asesoria a equipo dba, validaciones de scripts de descuadres de oaxaca, arreglo de recibos por funcionalidad con base a abonos en oaxaca</td></tr><tr><td>2026-09-30</td><td class="num">00:41</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T36 BASE DE DATOS: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>meet con cliente Tlajo de valuación masiva de cuentas para 2027</td></tr><tr><td>2026-09-30</td><td class="num">04:20</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T96 BASE DE DATOS: Revisión/asignaciones generales en las bases de datos de los clientes</td>
+       <td>revision de recibos de oaxaca con base a abonos para ajuste de cifras</td></tr>
+    </tbody></table>
+</div>
+<div class="page persona">
+  <h2 class="section">Arley Magnolia Aquino García</h2>
+  <p class="nota">36 registros · <b>81.93 h</b> de 198 h · 41% · arley.aquino@migob.digital</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-01</td><td class="num">00:01</td><td>task</td><td>EJEMPLO_CAPACITACION_FEBRERO2026</td>
+       <td>EJ1-T166 EJEMPLO</td>
+       <td>reunión de capacitación con Jonathan FSW</td></tr><tr><td>2026-09-01</td><td class="num">02:04</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T76 PMO: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>reunion con Jonatha sobre uso de Zoho</td></tr><tr><td>2026-09-02</td><td class="num">00:54</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T76 PMO: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Revisión de estatus en multap sigob reunión con tania ayon</td></tr><tr><td>2026-09-03</td><td class="num">00:40</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>revision de tareas vencidos</td></tr><tr><td>2026-09-03</td><td class="num">01:01</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T76 PMO: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>reunión con Tania Ayon y Alfredo Castro para revision de proceso de integración de celula qa </td></tr><tr><td>2026-09-04</td><td class="num">04:42</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>Revisión de tareas y problemas tarea creadas. Vencimiento seguimiento d e tareas sesgadas</td></tr><tr><td>2026-09-07</td><td class="num">01:54</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;reunión mensual de fabrica de software&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-07</td><td class="num">01:10</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T76 PMO: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-08</td><td class="num">03:01</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>REVISION DE TAREAS Y PORBLMEAS EN ZOHO, ASI COMO REUNIÓN DE REVISION DE PROCESO DE INTEGRACIÓN DE CELULA QA</td></tr><tr><td>2026-09-09</td><td class="num">00:01</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T76 PMO: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>Atendi sesión de capacitación con Camila, Angel Rodolfo y Roberto</td></tr><tr><td>2026-09-09</td><td class="num">01:24</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T76 PMO: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>CURSO DE INDUCCIÓN A ZOHO PARTE UNO PRACTICANTES DE CONALEP</td></tr><tr><td>2026-09-09</td><td class="num">07:10</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>reporte de metricas de desempeño de agosto</td></tr><tr><td>2026-09-10</td><td class="num">00:43</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T76 PMO: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>atendi la sesión de capactación a Zoho parte 2 </td></tr><tr><td>2026-09-10</td><td class="num">04:26</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-11</td><td class="num">01:42</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T77 PMO: Reuniones de equipo</td>
+       <td>Reunión de revision de metricas de desempeño correspondientes a agosto </td></tr><tr><td>2026-09-11</td><td class="num">04:38</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>REVISION DE TAREAS Y PROBLEMAS CRRACION Y REVISION DE PROYECTO PARA E AGENTE</td></tr><tr><td>2026-09-14</td><td class="num">00:56</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T77 PMO: Reuniones de equipo</td>
+       <td>sesión técnica de integración de proceso de qa, revision de plantillas </td></tr><tr><td>2026-09-15</td><td class="num">01:03</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>Reunión con célula de frontend Sir para retroalimentación </td></tr><tr><td>2026-09-17</td><td class="num">03:21</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T77 PMO: Reuniones de equipo</td>
+       <td>reunión de acuerdos con proyecto de adm qa para dar de alta tareas </td></tr><tr><td>2026-09-17</td><td class="num">02:25</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>Revisión de tareas y problemas creados soporte en proceso de integración de qa</td></tr><tr><td>2026-09-18</td><td class="num">01:02</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T77 PMO: Reuniones de equipo</td>
+       <td>reunion con celula backend de mejoras en zoho</td></tr><tr><td>2026-09-18</td><td class="num">00:03</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-18</td><td class="num">04:18</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>creacion de manual de celula de qa con estatus en zoho</td></tr><tr><td>2026-09-21</td><td class="num">00:21</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T77 PMO: Reuniones de equipo</td>
+       <td>reunion con QA para revisión de manual</td></tr><tr><td>2026-09-21</td><td class="num">03:52</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>DOCUMENTO PARA ALFREDO DE QA PARA AUTOMATIZACION DE PROCESO DE QA </td></tr><tr><td>2026-09-22</td><td class="num">02:05</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T77 PMO: Reuniones de equipo</td>
+       <td>Reunión con alfredo para analisis de proceso de automatizacion de metodologia de zoho</td></tr><tr><td>2026-09-22</td><td class="num">00:56</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>revision de menciones en zoho, revision de correos de seuimiento de tareas cerradas </td></tr><tr><td>2026-09-23</td><td class="num">04:22</td><td>task</td><td>NAY-FAN</td>
+       <td>NA3-T242 FAN: Entendimiento de procesos</td>
+       <td>PREPARACION DE RESPUESTA A ALEJANDRA DEL FAN CON DOCUMENTO COMPLETO DE HU Y CREACION DE EXCEL DE DOCUMENTO DE REFERENCIA </td></tr><tr><td>2026-09-24</td><td class="num">04:49</td><td>task</td><td>NAY-FAN</td>
+       <td>NA3-T242 FAN: Entendimiento de procesos</td>
+       <td>ESTIMACIONES pert de fan en plataforma pgp</td></tr><tr><td>2026-09-24</td><td class="num">01:32</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>ajuste de proceso en zoho de qa, elaboracion de manual de estatus de qa</td></tr><tr><td>2026-09-25</td><td class="num">02:54</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-28</td><td class="num">01:20</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T76 PMO: Reuniones de gestión de tareas y problemas en Zoho</td>
+       <td>SESIÓN DE REVISIÓN DEL PORYECTO DE NAY-ING-STE, CON EQUIPO DE NAYARIT, REVISION DE DUDAS DE HITOS DEL PORYECTO </td></tr><tr><td>2026-09-28</td><td class="num">03:53</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>elaboración de manual de nomenclatura ed zoho</td></tr><tr><td>2026-09-29</td><td class="num">00:34</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T77 PMO: Reuniones de equipo</td>
+       <td>REUNION CN CELULA NOMINAS BACK PARA RETROALIMENTACIÓN DE USO DE ZOHO </td></tr><tr><td>2026-09-29</td><td class="num">03:25</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>documento de estandarización de nomenclatura de zoho </td></tr><tr><td>2026-09-30</td><td class="num">03:14</td><td>task</td><td>SIGOB-ADMON</td>
+       <td>SIAB-T75 PMO: Revisión de tareas/problemas en Zoho</td>
+       <td>documento de validación de fotografía, además de revisión de tareas creadas, revision de tareas de proyecto SAC </td></tr>
+    </tbody></table>
+</div>
+<div class="page persona">
+  <h2 class="section">Camila Pérez González</h2>
+  <p class="nota">27 registros · <b>62.58 h</b> de 198 h · 32% · camila.perez@sigob.com.mx</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-14</td><td class="num">05:41</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>Sali temprano, pero avance con un agente IA, el cual lo configuremediante un pequeño codigo de python e importe de openIA</td></tr><tr><td>2026-09-15</td><td class="num">05:00</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Realice una investigacion de BD y realice un pequeño servidor local mediante node en la terminal&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-17</td><td class="num">00:01</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Revisión de tareas pendientes&amp;nbsp;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-17</td><td class="num">01:14</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>Analisis de Tareas pendientes </td></tr><tr><td>2026-09-17</td><td class="num">01:19</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T45 AGENTE-ATC: [GESTION] H0-02 Armar la tabla para comparar opciones y la ficha de decisiones</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Detuve el timmer , porque cambiaron la descripcion de la tarea&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-17</td><td class="num">00:23</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Prueba con timmer&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-17</td><td class="num">00:14</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T44 AGENTE-ATC: [GESTION] H0-01 Escribir la ficha del proyecto: que va a hacer el agente y que no</td>
+       <td>Van actualizar tareas</td></tr><tr><td>2026-09-17</td><td class="num">00:50</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Documentación necesaria para la tarea&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-17</td><td class="num">00:50</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>Ya actualizaron tareas </td></tr><tr><td>2026-09-17</td><td class="num">01:16</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T44 AGENTE-ATC: [GESTION] H0-01 Escribir la ficha del proyecto: que va a hacer el agente y que no</td>
+       <td>Termine la hoja requerida, quedo al pendiente en caso de cualquier corrección a realizar </td></tr><tr><td>2026-09-17</td><td class="num">00:14</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>Vamos a salir temprano, pero ya termine mi actividad</td></tr><tr><td>2026-09-21</td><td class="num">00:45</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>Voy empezar con la tarea H0-02</td></tr><tr><td>2026-09-21</td><td class="num">02:12</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T45 AGENTE-ATC: [GESTION] H0-02 Armar la tabla para comparar opciones y la ficha de decisiones</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Avance y documento terminado, se enceuntra en doc adjuntos&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-21</td><td class="num">01:53</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>Salida temprana por motivos de salud </td></tr><tr><td>2026-09-22</td><td class="num">03:52</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T16 AGENTE-ATC: [ANALISIS] H1-05 Catalogo de lo que el agente hace para el CONTRIBUYENTE</td>
+       <td>Salgo temprano por motivos de enfermedad, pero se realizo el avance correspondiente&amp;nbsp;</td></tr><tr><td>2026-09-22</td><td class="num">05:01</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Documentación y analisis del H1-06 y&amp;nbsp; H1-07&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-23</td><td class="num">02:42</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T16 AGENTE-ATC: [ANALISIS] H1-05 Catalogo de lo que el agente hace para el CONTRIBUYENTE</td>
+       <td>Termine el documento </td></tr><tr><td>2026-09-24</td><td class="num">03:35</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;Documentación de la plataforma tlajo parea comprender la cobranza dia a dia (Falta definir )&lt;/div&gt;</td></tr><tr><td>2026-09-24</td><td class="num">05:42</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T18 AGENTE-ATC: [ANALISIS] H1-07 Armar 60 casos de prueba: 30 de contribuyente y 30 de funcionario</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Consulta a operaciones para la identificación de preguntas que podemos implementar en las pruebas&amp;nbsp;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-24</td><td class="num">02:14</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T17 AGENTE-ATC: [ANALISIS] H1-06 Catalogo de lo que el agente hace para el FUNCIONARIO</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;Avance de los modulos que debe identificar el agente en la plataforma, y a que normativas se apegan estos modulos&amp;nbsp;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-28</td><td class="num">02:02</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T18 AGENTE-ATC: [ANALISIS] H1-07 Armar 60 casos de prueba: 30 de contribuyente y 30 de funcionario</td>
+       <td>Termine la actividad solicitada, falta vaciarlas a la tabla de angel</td></tr><tr><td>2026-09-28</td><td class="num">03:46</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>Termine de documentarme por hoy </td></tr><tr><td>2026-09-28</td><td class="num">01:19</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T17 AGENTE-ATC: [ANALISIS] H1-06 Catalogo de lo que el agente hace para el FUNCIONARIO</td>
+       <td>Termine las preguntas de entrenamiento, solo falta vaciarlas</td></tr><tr><td>2026-09-29</td><td class="num">00:16</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>Salida temprana </td></tr><tr><td>2026-09-29</td><td class="num">04:30</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T17 AGENTE-ATC: [ANALISIS] H1-06 Catalogo de lo que el agente hace para el FUNCIONARIO</td>
+       <td>Termine el documento requerido</td></tr><tr><td>2026-09-30</td><td class="num">02:02</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T21 AGENTE-ATC: [ANALISIS] H1-10 Escribir tres conversaciones de ejemplo: dos de contribuyente y una de funcionario</td>
+       <td>Termine el documento</td></tr><tr><td>2026-09-30</td><td class="num">03:42</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T1 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio- Camila</td>
+       <td>Saldre temprano </td></tr>
+    </tbody></table>
+</div>
+<div class="page persona">
+  <h2 class="section">angel Fernando García Najar</h2>
+  <p class="nota">33 registros · <b>46.88 h</b> de 198 h · 24% · angel.garcia@sigob.com.mx</p>
+  <table>
+    <thead><tr><th>Fecha</th><th class="num">Horas</th><th>Tipo</th><th>Proyecto</th><th>Tarea / Issue</th><th>Nota</th></tr></thead>
+    <tbody><tr><td>2026-09-14</td><td class="num">00:02</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T3 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio-Angel</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-14</td><td class="num">01:45</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T3 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio-Angel</td>
+       <td>hice un curso de SQL</td></tr><tr><td>2026-09-15</td><td class="num">04:48</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T3 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio-Angel</td>
+       <td>saldremos por el grito </td></tr><tr><td>2026-09-17</td><td class="num">00:19</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T47 AGENTE-ATC: [GESTION] H0-04 Armar el calendario de las 8 semanas y la bitacora del equipo</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;investigue como crear un hito&amp;nbsp;&lt;/div&gt;</td></tr><tr><td>2026-09-17</td><td class="num">00:33</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T46 AGENTE-ATC: [GESTION] H0-03 Definir que datos puede usar el agente y cuales nunca salen</td>
+       <td>trabajo pendiente </td></tr><tr><td>2026-09-17</td><td class="num">00:25</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T47 AGENTE-ATC: [GESTION] H0-04 Armar el calendario de las 8 semanas y la bitacora del equipo</td>
+       <td>esperando modificaciones</td></tr><tr><td>2026-09-17</td><td class="num">01:23</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T46 AGENTE-ATC: [GESTION] H0-03 Definir que datos puede usar el agente y cuales nunca salen</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-21</td><td class="num">01:27</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T46 AGENTE-ATC: [GESTION] H0-03 Definir que datos puede usar el agente y cuales nunca salen</td>
+       <td>revisión de documento </td></tr><tr><td>2026-09-21</td><td class="num">00:10</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T46 AGENTE-ATC: [GESTION] H0-03 Definir que datos puede usar el agente y cuales nunca salen</td>
+       <td>revision de documento </td></tr><tr><td>2026-09-21</td><td class="num">01:13</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T47 AGENTE-ATC: [GESTION] H0-04 Armar el calendario de las 8 semanas y la bitacora del equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-21</td><td class="num">01:14</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T47 AGENTE-ATC: [GESTION] H0-04 Armar el calendario de las 8 semanas y la bitacora del equipo</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-21</td><td class="num">00:01</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T47 AGENTE-ATC: [GESTION] H0-04 Armar el calendario de las 8 semanas y la bitacora del equipo</td>
+       <td>nos retiramos de la empresa </td></tr><tr><td>2026-09-22</td><td class="num">02:17</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T55 AGENTE-ATC: [TECNICO] H1-11 Definir el formato del archivo de casos de prueba (espejo de H1-07)</td>
+       <td>revisión </td></tr><tr><td>2026-09-22</td><td class="num">03:44</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T3 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio-Angel</td>
+       <td>investigando para otras tareas </td></tr><tr><td>2026-09-23</td><td class="num">02:49</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T3 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio-Angel</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-23</td><td class="num">03:39</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T3 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio-Angel</td>
+       <td><span class="nota">(sin nota)</span></td></tr><tr><td>2026-09-24</td><td class="num">00:07</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T55 AGENTE-ATC: [TECNICO] H1-11 Definir el formato del archivo de casos de prueba (espejo de H1-07)</td>
+       <td>estuvimos corrigiendo el apartado del archivo </td></tr><tr><td>2026-09-24</td><td class="num">00:58</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T55 AGENTE-ATC: [TECNICO] H1-11 Definir el formato del archivo de casos de prueba (espejo de H1-07)</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;fui a comer&amp;nbsp;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-24</td><td class="num">01:49</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T19 AGENTE-ATC: [TECNICO] H1-08 Diseñar que se configura en la plataforma para dar de alta un agente</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;corregiré otra tarea&amp;nbsp;&lt;/div&gt;</td></tr><tr><td>2026-09-24</td><td class="num">00:23</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T55 AGENTE-ATC: [TECNICO] H1-11 Definir el formato del archivo de casos de prueba (espejo de H1-07)</td>
+       <td>correcciones del formato </td></tr><tr><td>2026-09-24</td><td class="num">00:50</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T19 AGENTE-ATC: [TECNICO] H1-08 Diseñar que se configura en la plataforma para dar de alta un agente</td>
+       <td>correcion de otra tarea </td></tr><tr><td>2026-09-24</td><td class="num">00:25</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T3 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio-Angel</td>
+       <td>viendo el sitio web de tlajo </td></tr><tr><td>2026-09-24</td><td class="num">00:53</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T55 AGENTE-ATC: [TECNICO] H1-11 Definir el formato del archivo de casos de prueba (espejo de H1-07)</td>
+       <td>intente corregir el error de el traslado de csv a excel e intente cambiar el codigo </td></tr><tr><td>2026-09-28</td><td class="num">01:57</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T55 AGENTE-ATC: [TECNICO] H1-11 Definir el formato del archivo de casos de prueba (espejo de H1-07)</td>
+       <td>volvi a revisar la tabla en csv</td></tr><tr><td>2026-09-28</td><td class="num">03:17</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T55 AGENTE-ATC: [TECNICO] H1-11 Definir el formato del archivo de casos de prueba (espejo de H1-07)</td>
+       <td>revision de tarea </td></tr><tr><td>2026-09-29</td><td class="num">00:35</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T19 AGENTE-ATC: [TECNICO] H1-08 Diseñar que se configura en la plataforma para dar de alta un agente</td>
+       <td>revision de tarea </td></tr><tr><td>2026-09-29</td><td class="num">01:14</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T20 AGENTE-ATC: [ANALISIS] H1-09 Poner los numeros que debe cumplir y las metricas del tablero</td>
+       <td>cambio de tarea para modificaciones (H1-08)</td></tr><tr><td>2026-09-29</td><td class="num">01:17</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T19 AGENTE-ATC: [TECNICO] H1-08 Diseñar que se configura en la plataforma para dar de alta un agente</td>
+       <td>modifique el boceto </td></tr><tr><td>2026-09-29</td><td class="num">01:07</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T20 AGENTE-ATC: [ANALISIS] H1-09 Poner los numeros que debe cumplir y las metricas del tablero</td>
+       <td>&lt;div style="font-size:0.9285rem"&gt;&lt;div&gt;para revisar y salimos temprano&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</td></tr><tr><td>2026-09-30</td><td class="num">00:11</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T55 AGENTE-ATC: [TECNICO] H1-11 Definir el formato del archivo de casos de prueba (espejo de H1-07)</td>
+       <td>haciendo un archivo con los casos en conjunto </td></tr><tr><td>2026-09-30</td><td class="num">01:41</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T3 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio-Angel</td>
+       <td>saldremos temprano y tuvimos una platica con el señor Arreola además de que revise las demás tareas que tengo</td></tr><tr><td>2026-09-30</td><td class="num">01:58</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T3 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio-Angel</td>
+       <td>voy a tomar un tiempo para comer </td></tr><tr><td>2026-09-30</td><td class="num">02:22</td><td>task</td><td>SIGOB-AGENTE-ATC</td>
+       <td>SIA0-T3 AGENTE-ATC: [DOCUMENTACIÓN] Atención a asignaciones operativas en sitio-Angel</td>
+       <td>tuvimos un meet con lizbeth pero no encontre mi tarea de meet asi que lo hice en esta </td></tr>
+    </tbody></table>
+</div>
+
+  <h2 class="section">Resumen ejecutivo</h2>
+  <p style="margin:8px 0"><b>Cumplimiento.</b> El equipo registró <b>1469 h</b> de las <b>2178 h</b> de referencia (67 %). Por encima de la meta: <b>Mario Alan Merel Tamayo, paolo payan</b>. Por debajo del 60 %: <b>José Alfredo Castro Salazar, Haniel Rojo, Arley Magnolia Aquino García, Camila Pérez González, angel Fernando García Najar</b> — antes de leerlo como falta de carga hay que descontar vacaciones, incapacidades y altas a mitad de mes.</p>
+  <p style="margin:8px 0"><b>Oportunidad del registro.</b> <b>99 %</b> de los registros se capturaron el mismo día o al siguiente. El equipo no está cargando el mes al final, que es la principal fuente de horas inventadas.</p>
+  <p style="margin:8px 0"><b>Trazabilidad.</b> <b>87 %</b> de los registros trae nota y <b>80 %</b> trae una nota con contenido real. Sin nota en más del 40 % de sus registros: <b>Francisco Alberto Gómez Alegría, Luis Elizondo</b>. Esas horas cuentan para el total pero no se pueden explicar ante el cliente ni auditar. </p>
+  <p style="margin:8px 0"><b>Concentración en administración.</b> <b>Mario Alan Merel Tamayo (96 %), paolo payan (95 %), Haniel Rojo (78 %), Arley Magnolia Aquino García (89 %)</b> tienen la mayor parte de su tiempo en proyectos de administración interna. Hay dos lecturas y conviene distinguirlas: que efectivamente su trabajo sea de gestión, o que estén cargando a administración tiempo que corresponde a un proyecto. En el segundo caso, el costo por proyecto del año está subestimado.</p>
+  <p style="margin:8px 0"><b>Granularidad.</b> <b>paolo payan (7.2 h por registro), Francisco Alberto Gómez Alegría (9.0 h por registro)</b> registran la jornada en un solo bloque. Un bloque diario único impide saber en qué se fue el día y suele venir acompañado de nota ausente o genérica.</p>
+  <p style="margin:8px 0"><b>Continuidad.</b> <b>Camila Pérez González (10 de 22 días), angel Fernando García Najar (10 de 22 días)</b> registraron en menos del 60 % de los días hábiles. Revisar si fue alta reciente, vacaciones o registro pendiente.</p>
+  <p style="margin:8px 0"><b>Señales a verificar.</b> 4 registro(s) de más de 12 h en un día y 12 en sábado o domingo. Los primeros suelen ser un timer que se quedó corriendo; los segundos cuentan como trabajadas pero no suman días hábiles a la meta.</p>
+  <p class="nota" style="margin-top:14px">Lectura automática de los datos del mes. La meta de 198 h no descuenta vacaciones, incapacidades ni festivos; cada señal requiere confirmación antes de tomarse como conclusión.</p>
+</body>
+</html>
